@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>S3 Buckets validation on Plan for Disaster Recovery (DR)</title>
+    <link>http://Anselm10.github.io/2-backup-and-restore/2-s3-cross-region-replication/s3-buckets-validation/</link>
+    <description>Recent content in S3 Buckets validation on Plan for Disaster Recovery (DR)</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="http://Anselm10.github.io/2-backup-and-restore/2-s3-cross-region-replication/s3-buckets-validation/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

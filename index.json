@@ -1,0 +1,456 @@
+[
+{
+	"uri": "http://Anselm10.github.io/1-introduction/",
+	"title": "Introduction",
+	"tags": [],
+	"description": "",
+	"content": "Unishop is THE one-stop-shop for all your Unicorn needs. You can find the best Unicorn selection online at the Unishop and get your Unicorn delivered in less than 24 hours!\nAs a young startup Unishop built a great service which was focused on customers and business outcomes but less on technology and architecture. After a few years establishing a business model and securing the next round of venture capital funding, the business is looking to expand to other markets, such as Unicorn-Insurance, Unicorn-Banking and Unicorn-Ride-Sharing The CTO has asked you to ensure the system architecture is sufficiently resilient to recover from a disaster. A number of Disaster Recovery (DR) strategies are available from Amazon Web Services (AWS) representing various Recovery Point Objectives (RPO) and Recovery Time Objectives (RTO).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/1-lab-prerequisites/at-an-aws-event/",
+	"title": "...at an AWS event",
+	"tags": [],
+	"description": "",
+	"content": "If you are running this workshop as part of an instructor led workshop, please log into the workshop using this link and enter the hash provided to you as part of the workshop.\nAll resources for this workshop have been pre-provisioned.\nContinue to the S3 Cross-Region Replication section of the workshop.\nIf you are running the workshop on your own, go to: Start the workshop on your own.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/1-lab-prerequisites/at-an-aws-event/",
+	"title": "...at an AWS event",
+	"tags": [],
+	"description": "",
+	"content": "If you are running this workshop as part of an instructor led workshop, please log into the workshop using this link and enter the hash provided to you as part of the workshop.\nAll resources for this workshop have been pre-provisioned.\nContinue to the Verify Websites section of the workshop.\nIf you are running the workshop on your own, go to: Start the workshop on your own.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/1-lab-prerequisites/at-an-aws-event/",
+	"title": "...at an AWS event",
+	"tags": [],
+	"description": "",
+	"content": "If you are running this workshop as part of an instructor led workshop, please log into the workshop using this link and enter the hash provided to you as part of the workshop.\nAll resources for this workshop have been pre-provisioned.\nContinue to the Verify Websites section of the workshop.\nIf you are running the workshop on your own, go to: Start the workshop on your own.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/1-lab-prerequisites/at-an-aws-event/",
+	"title": "...at an AWS event",
+	"tags": [],
+	"description": "",
+	"content": "If you are running this workshop as part of an instructor led workshop, please log into the workshop using this link and enter the hash provided to you as part of the workshop.\nAll resources for this workshop have been pre-provisioned.\nContinue to the DynamoDB section of the workshop.\nIf you are running the workshop on your own, go to: Start the workshop on your own.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/1-introduction/agenda/",
+	"title": "Agenda",
+	"tags": [],
+	"description": "",
+	"content": "These modules are broken down into the AWS Disaster Recovery strategies. All the modules make use of the Unishop application and each module will highlight the AWS strategy and AWS services that have features that make it easy to implement a disaster recovery plan.\nModule 1: Backup and Restore. Backup and restore is a suitable approach for mitigating against data loss or corruption. This approach can also be used to mitigate against a regional disaster by replicating data to other AWS Regions, or to mitigate lack of redundancy for workloads deployed to a single Availability Zone. In addition to data, you must redeploy the infrastructure, configuration, and application code in the recovery Region. To enable infrastructure to be redeployed quickly without errors, you should always deploy using infrastructure as code (IaC) using services such as AWS CloudFormation or the AWS Cloud Development Kit (CDK). Without IaC, it may be complex to restore workloads in the recovery Region, which will lead to increased recovery times and possibly exceed your RTO. In addition to user data, be sure to also back up code and configuration, including Amazon Machine Images (AMIs) you use to create Amazon EC2 instances. You can use AWS CodePipeline to automate redeployment of application code and configuration.\nModule 2: Pilot Light. With the pilot light approach, you replicate your data from one Region to another and provision a copy of your core workload infrastructure. Resources required to support data replication and backup, such as databases and object storage, are always on. Other elements, such as application servers, are loaded with application code and configurations, but are \u0026ldquo;switched off\u0026rdquo; and are only used during testing or when disaster recovery failover is invoked. In the cloud, you have the flexibility to deprovision resources when you do not need them, and provision them when you do. A best practice for “switched off” is to not deploy the resource, and then create the configuration and capabilities to deploy it (“switch on”) when needed. Unlike the backup and restore approach, your core infrastructure is always available and you always have the option to quickly provision a full scale production environment by switching on and scaling out your application servers.\nModule 3: Warm Standby. The warm standby approach involves ensuring that there is a scaled down, but fully functional, copy of your production environment in another Region. This approach extends the pilot light concept and decreases the time to recovery because your workload is always-on in another Region. This approach also allows you to more easily perform testing or implement continuous testing to increase confidence in your ability to recover from a disaster.\nModule 4: Hot Standby. You can run your workload simultaneously in multiple Regions as part of a multi-site active/active or hot standby active/passive strategy. Hot standby uses an active/passive configuration where users are only directed to a single region and DR regions do not take traffic. Most customers find that if they are going to stand up a full environment in the second Region, it makes sense to use it active/active.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/4-failover/aurora/",
+	"title": "Aurora",
+	"tags": [],
+	"description": "",
+	"content": "Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions. It replicates your data with no impact on database performance, enables fast local reads with low latency in each region, and provides disaster recovery from region-wide outages. In disaster recovery situations, you can promote a secondary region to take full read-write responsibilities in under a minute.\nWith an Aurora global database, there are two different approaches to failover depending on the scenario.\nFailover – Use this approach to recover from an unplanned outage. With this approach, you perform a cross-Region failover to one of the secondary DB clusters in your Aurora global database. The RPO for this approach is typically a non-zero value measured in seconds. The amount of data loss depends on the Aurora global database replication lag across the AWS Regions at the time of the failure. To learn more, see Recovering an Amazon Aurora global database from an unplanned outage.\nSwitchover – This operation was previously called \u0026ldquo;managed planned failover.\u0026rdquo; Use this approach for controlled scenarios, such as operational maintenance and other planned operational procedures. Because this feature synchronizes secondary DB clusters with the primary before making any other changes, RPO is 0 (no data loss). To learn more, see Performing switchovers for Amazon Aurora global databases.\nSwitchover, is showcased in Module 3: Warm Standby.\nFor this workshop we will be doing a Failover.\nPromote Aurora 1.1 Click RDS to navigate to the dashboard in the Oregon (us-west-2) region.\n1.2 Look at the pilot-global Global database. Notice how you have pilot-primary a Primary cluster in us-east-1 which has your Writer instance and pilot-secondary a Secondary cluster in us-west-2 which has your Reader instance.\n1.3 Select pilot-global cluster and select Switch over or fail over global database from Actions.\n1.4 Choose Failover (allow data loss), select pilot-secondary as New primary cluster, enter confirm to confirm the failover then click Confirm.\nYou will need to wait for the database to be successfully promoted before moving on to the next step. This can take several minutes.\n1.5 When the failover is complete, notice the changes. The Primary cluster is now in us-west-2 which has our Writer instance and the Secondary Cluster is now in us-east-1 which has our Reader instance.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/3-failover/aurora/",
+	"title": "Aurora",
+	"tags": [],
+	"description": "",
+	"content": "Amazon Aurora Global Database is designed for globally distributed applications, allowing a single Amazon Aurora database to span multiple AWS regions. It replicates your data with no impact on database performance, enables fast local reads with low latency in each region, and provides disaster recovery from region-wide outages. In disaster recovery situations, you can promote a secondary region to take full read-write responsibilities in under a minute.\nWith an Aurora global database, there are two different approaches to failover depending on the scenario.\nFailover – Use this approach to recover from an unplanned outage. With this approach, you perform a cross-Region failover to one of the secondary DB clusters in your Aurora global database. The RPO for this approach is typically a non-zero value measured in seconds. The amount of data loss depends on the Aurora global database replication lag across the AWS Regions at the time of the failure. To learn more, see Recovering an Amazon Aurora global database from an unplanned outage.\nSwitchover – This operation was previously called \u0026ldquo;managed planned failover.\u0026rdquo; Use this approach for controlled scenarios, such as operational maintenance and other planned operational procedures. Because this feature synchronizes secondary DB clusters with the primary before making any other changes, RPO is 0 (no data loss). To learn more, see Performing switchovers for Amazon Aurora global databases.\nIn a true disaster scenario you will most likely use Failover, which is showcased in Module 2: Pilot Light.\nFor this workshop we will be doing a Switchover.\nPromote Aurora 1.1 Click RDS to navigate to the dashboard in the Oregon (us-west-2) region.\n1.2 Look at the warm-global Global database topology. Notice how we have a Primary cluster in us-east-1 which has our Writer instance and a Secondary cluster in us-west-2 which has our Reader instance.\n1.3 Select warm-global cluster and select Switch over or fail over global database from Actions.\nYou will want to use the recovery region to initiate the failover.\n1.4 Choose Switchover, select warm-secondary as New primary cluster, then click Confirm.\nYou will need to wait for the database to switchover before moving on to the next step. This can take several minutes.\n1.5 Notice the changes. The Primary cluster is now in us-west-2 which has our Writer instance and the Secondary Cluster is now in us-east-1 which has our Reader instance.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/4-prepare-secondary-region/backup/",
+	"title": "Backup",
+	"tags": [],
+	"description": "",
+	"content": "You are going to backup the resources in your primary region N. Virginia (us-east-1).\nBackup the EC2 instance 1.1 Click AWS Backup to navigate to the dashboard in the N. Virginia (us-east-1) region.\n1.2 Click the Protected resources link, then click the Create an on-demand backup button.\n1.3 Select EC2 as the Resource type, then select backupandrestore-primary as the Instance ID. Please set the IAM role as WSParticipant. Click the Create on-demand backup button.\nIf you do it in your own account If you do this lab in your own account, you wouldn\u0026rsquo;t have WSParticipant pre-configured for you. Instead, you\u0026rsquo;ll be using another IAM role.\nPlease set the IAM role as Default Role.\nYou may also need to update the permissions for your IAM role. Please follow the steps from the IAM Permissions Fix section below, if you\u0026rsquo;ll get an error.\n1.4 This will create a Backup job.\nBackup the RDS database 2.1 Click the Protected resources link, then click the Create an on-demand backup button.\nrds-1\n2.2 Select RDS as the Resource type, then select backupandrestore-primary as the Database name. Click the Create on-demand backup button.\n2.3 This will create a Backup job.\nBackups can also protect against corruption or accidental deletion of data.\nYou should see your two backup jobs.\nAs each job moves into a status of Completed, you can move onto Copy. This may take several minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/3-prepare-secondary-region/ec2/",
+	"title": "EC2",
+	"tags": [],
+	"description": "",
+	"content": "Create the EC2 Amazon Machine Image (AMI) 1.1 Click EC2 to navigate to the dashboard in the N. Virginia (us-east-1) region.\n1.2 Select pilot-primary. Click Create image under the Actions -\u0026gt; Images and Templates dropdown.\n1.3 Enter pilotAMI as the Image name, then click the Create Image button.\nCopy the EC2 Amazon Machine Image (AMI) 2.1 Click AMIs to navigate to the dashboard.\nYou will need to wait for the AMI status to be Available before moving on to the next step. This can take several minutes.\n2.2 Select pilotAMI. Click Copy AMI under the Actions dropdown.\n2.3 Select US West (Oregon) as the Destination Region.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/1-lab-prerequisites/",
+	"title": "Lab Prerequisites",
+	"tags": [],
+	"description": "",
+	"content": "To start the lab, follow one of the following links: depending on whether you are\u0026hellip;\nUsing an account provided by instructor at virtual or in-person workshop\nRunning in an AWS provided account (using AWS provided hashes) Using your own AWS account\nRunning the workshop in your own account Once you have completed one of the setup paths above, continue with S3 Cross-Region Replication.\nThis workshop takes about 60 minutes to complete\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/1-lab-prerequisites/",
+	"title": "Lab Prerequisites",
+	"tags": [],
+	"description": "",
+	"content": "To start the lab, follow one of the following links: depending on whether you are\u0026hellip;\nUsing an account provided by instructor at virtual or in-person workshop\nRunning in an AWS provided account (using AWS provided hashes) Using your own AWS account\nRunning the workshop in your own account Once you have completed one of the setup paths above, continue with Verify Websites .\nThis workshop takes about 60 minutes to complete\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/1-lab-prerequisites/",
+	"title": "Lab Prerequisites",
+	"tags": [],
+	"description": "",
+	"content": "To start the lab, follow one of the following links: depending on whether you are\u0026hellip;\nUsing an account provided by instructor at virtual or in-person workshop\nRunning in an AWS provided account (using AWS provided hashes) Using your own AWS account\nRunning the workshop in your own account Once you have completed one of the setup paths above, continue with S3 Cross-Region Replication.\nThis workshop takes about 60 minutes to complete\n"
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/1-lab-prerequisites/",
+	"title": "Lab Prerequisites",
+	"tags": [],
+	"description": "",
+	"content": "To start the lab, follow one of the following links: depending on whether you are\u0026hellip;\nUsing an account provided by instructor at virtual or in-person workshop\nRunning in an AWS provided account (using AWS provided hashes) Using your own AWS account\nRunning the workshop in your own account Once you have completed one of the setup paths above, continue with DynamoDB\n"
+},
+{
+	"uri": "http://Anselm10.github.io/",
+	"title": "Plan for Disaster Recovery (DR)",
+	"tags": [],
+	"description": "",
+	"content": "Plan for Disaster Recovery (DR) Disaster Recovery Labs Introduction Backup and Restore Pilot Light Warm Standby Hot Standby "
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/1-lab-prerequisites/on-your-own/primary-region/",
+	"title": "Primary Region",
+	"tags": [],
+	"description": "",
+	"content": "Deploying the Amazon CloudFormation Templates 1. Deploy Network Configuration Only complete this section if you have not already deployed the Network Configuration as part of another disaster recovery workshop. All disaster recovery workshops share the same Network Configuration stack and only needs to be deployed once. If you have already deployed the Network Configuration as part of another workshop you can move onto section 2. Deploy Application.\n1.1 Create Network Infrastructure in primary region N. Virginia (us-east-1) by launching this CloudFormation Template .\n1.2 Validate CloudFormation stack name\nnetwork-stack . Click the Next button.\n1.3 Click the Next button.\n1.4 Click the Submit button.\n2. Deploy Application 2.1 Create application in primary region N. Virginia (us-east-1) by launching this CloudFormation Template .\n2.2 Validate CloudFormation stack name hot-primary .\nLeave isPrimary as the default value\nLeave LatestAmiId as the default values\nLeave NetworkStackName as the default values, unless you\u0026rsquo;ve changed it in the previous step\nClick the Next button.\n2.3 Leave all selections as default and click the Next button.\n2.4 Scroll to the bottom of the page and enable the I acknowledge that AWS CloudFormation might create IAM resources with custom names checkbox, then click the Submit button.\nYou will need to wait for the Hot Standby Primary Region stack to have a status of Completed before moving on to the next step. This will take approximately 15 minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/1-lab-prerequisites/on-your-own/s3-access/",
+	"title": "S3 Access",
+	"tags": [],
+	"description": "",
+	"content": "Allow Amazon S3 Public Access Your application employs AWS Simple Storage Service (S3) Static website hosting. To make the application available to Internet users, you must disable the AWS account policy that blocks public access.\n1.1 Click S3 to navigate to the dashboard.\n1.2 Click Block Public Access settings for this account.\n1.3 If you see that Block all public access is On, click the Edit button to get to the next screen.\n1.4 De-select Block all public access, including any child selections. Click the Save changes button.\n1.5 Enter confirm then click the Confirm button.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/1-lab-prerequisites/on-your-own/s3-access/",
+	"title": "S3 Access",
+	"tags": [],
+	"description": "",
+	"content": "Allow Amazon S3 Public Access Your application employs AWS Simple Storage Service (S3) Static website hosting. To make the application available to Internet users, you must disable the AWS account policy that blocks public access.\n1.1 Click S3 to navigate to the dashboard.\n1.2 Click Block Public Access settings for this account.\n1.3 If you see that Block all public access is On, click the Edit button to get to the next screen.\n1.4 De-select Block all public access, including any child selections. Click the Save changes button.\n1.5 Enter confirm then click the Confirm button.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/1-lab-prerequisites/on-your-own/s3-access/",
+	"title": "S3 Access",
+	"tags": [],
+	"description": "",
+	"content": "Allow Amazon S3 Public Access Your application employs AWS Simple Storage Service (S3) Static website hosting. To make the application available to Internet users, you must disable the AWS account policy that blocks public access.\n1.1 Click S3 to navigate to the dashboard.\n1.2 Click Block Public Access settings for this account.\n1.3 If you see that Block all public access is On, click the Edit button to get to the next screen.\n1.4 De-select Block all public access, including any child selections. Click the Save changes button.\n1.5 Enter confirm then click the Confirm button.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/2-s3-cross-region-replication/s3-buckets-validation/",
+	"title": "S3 Buckets validation",
+	"tags": [],
+	"description": "",
+	"content": "Verify S3 buckets As part of the CloudFormation Template, the primary region and secondary region Amazon S3 buckets were created.\n1.1 Click Amazon S3 to navigate to the dashboard.\n1.2 The two S3 buckets begin with backupandrestore Note the regions for the two S3 buckets.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/5-failover/simulation-of-the-regional-service-event/",
+	"title": "Simulation of the Regional Service Event",
+	"tags": [],
+	"description": "",
+	"content": "Simulating a Regional Service Event You will now simulate a regional service event affecting the Unishop website in N. Virginia (us-east-1). You are going to achieve this by blocking public access to the S3 bucket that is hosting the website making the Unishop website unavailable.\n1.1 Click S3 to navigate to the dashboard.\n1.2 Click on the backupandrestore-primary-uibucket-xxxx link.\n1.3 Click the Permissions link. In the Block public access (bucket settings) section, click the Edit button.\n1.4 Enable the Block all public access checkbox, then click the Save changes button.\n1.5 Type\nconfirm , then click the Confirm button.\n1.6 Click the Properties link. In the Static website hosting section. Click on the Bucket website endpoint link.\n1.7 You should get a 403 Forbidden error.\nIf you do not get a 403 Forbidden error, this might be due to caching. Please try refreshing the page or opening the website in a different browser or incognito mode to see the error.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/1-lab-prerequisites/on-your-own/",
+	"title": "...on your own",
+	"tags": [],
+	"description": "",
+	"content": "\rOnly complete this section if you are doing this workshop on your own. If you are running the workshop at an AWS hosted event (such as re:Invent, AWS Summit, Immersion Day, or any other event hosted by an AWS employee), go to: Continue to the S3 Cross-Region Replication section of the workshop.\nUsing your own AWS account If you are using a personal AWS account, be aware that you will incur costs for the resources deployed in this workshop. After completing the workshop, remember to complete the Cleanup section to remove any unnecessary AWS resources.\nS3 Access Primary Region Secondary Region "
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/1-lab-prerequisites/on-your-own/",
+	"title": "...on your own",
+	"tags": [],
+	"description": "",
+	"content": "\rOnly complete this section if you are doing this workshop on your own. If you are running the workshop at an AWS hosted event (such as re:Invent, AWS Summit, Immersion Day, or any other event hosted by an AWS employee), go to: Continue to the Verify Websites section of the workshop.\nUsing your own AWS account If you are using a personal AWS account, be aware that you will incur costs for the resources deployed in this workshop. After completing the workshop, remember to complete the Cleanup section to remove any unnecessary AWS resources.\nS3 Access Primary Region Secondary Region "
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/1-lab-prerequisites/on-your-own/",
+	"title": "...on your own",
+	"tags": [],
+	"description": "",
+	"content": "\rOnly complete this section if you are doing this workshop on your own. If you are running the workshop at an AWS hosted event (such as re:Invent, AWS Summit, Immersion Day, or any other event hosted by an AWS employee), go to: Continue to the Verify Websites section of the workshop.\nUsing your own AWS account If you are using a personal AWS account, be aware that you will incur costs for the resources deployed in this workshop. After completing the workshop, remember to complete the Cleanup section to remove any unnecessary AWS resources.\nS3 Access Primary Region Secondary Region "
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/1-lab-prerequisites/on-your-own/",
+	"title": "...on your own",
+	"tags": [],
+	"description": "",
+	"content": "\rOnly complete this section if you are doing this workshop on your own. If you are running the workshop at an AWS hosted event (such as re:Invent, AWS Summit, Immersion Day, or any other event hosted by an AWS employee), go to: Continue to the DynamoDB section of the workshop.\nUsing your own AWS account If you are using a personal AWS account, be aware that you will incur costs for the resources deployed in this workshop. After completing the workshop, remember to complete the Cleanup section to remove any unnecessary AWS resources. This workshop takes about 90 minutes to complete.\nPrimary Region Secondary Region "
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/5-failover/application-recovery/",
+	"title": "Application Recovery",
+	"tags": [],
+	"description": "",
+	"content": "Restore RDS Database The RDS instance has already been restored to the Oregon (us-west-2) region due to time constraints. Please review RDS Restore for AWS Backup RDS restore steps.\nLaunch EC2 1.1 Click AWS Backup to navigate to the dashboard in the Oregon (us-west-2) region.\n1.2 Click the Backup Vaults link, then click the Default link.\n1.3 In the Recovery Points section. Select the EC2 backup. Click Restore under the Actions dropdown.\nIf you don\u0026rsquo;t see your backup, check the status of the Copy Job. Click AWS Backup to navigate to the dashboard in N. Virginia (us-east-1) region. Click the Jobs link, then click the Copy jobs link. Verify the Status of your EC2 copy job is Completed.\n1.4 In the Network settings section, select the VPC that is NOT the default VPC as the Virtual Private Cloud (VPC) and select network-stack-WebServerSecurityGroup-xxxx as the Security groups and de-select default.\n1.5 In the Restore Role section, select Choose an IAM Role and select WSParticipantRole as the Role name.\n1.6 You are going to want to bootstrap the instance to have the configurations necessary for the Unishop application in the Oregon (us-west-2) region. You use user data to achieve this.\nExpand the Advanced settings section and copy and paste the below script as the User data, then click the Restore backup button.\nUser Data Script: #!/bin/bash sudo su ec2-user export AWS_DEFAULT_REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python -c \u0026#34;import json,sys; print json.loads(sys.stdin.read())[\u0026#39;region\u0026#39;]\u0026#34;) export DATABASE=$(aws rds describe-db-instances --region $AWS_DEFAULT_REGION --db-instance-identifier backupandrestore-secondary --query \u0026#39;DBInstances[*].[Endpoint.Address]\u0026#39; --output text) sudo bash -c \u0026#34;cat \u0026gt;/home/ec2-user/unishopcfg.sh\u0026#34; \u0026lt;\u0026lt;EOF #!/bin/bash export DB_ENDPOINT=$DATABASE EOF sudo systemctl restart unishop You will need to wait for the restore job to have a status of Completed before moving on to the next step. This can take several minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/",
+	"title": "Backup and Restore",
+	"tags": [],
+	"description": "",
+	"content": "In this module, you will go through the Backup and Restore disaster recovery strategy. To learn more about this disaster recovery strategy, you can review this Disaster Recovery blog .\nBackup and Restore disaster recovery strategy has Recovery Point Objective(RPO) / Recovery Time Objective (RTO) within hours. For the backup and restore strategy secondary region, all data, infrastructure and services need to be provisioned.\nYour application is currently deployed in the primary region N. Virginia (us-east-1). Oregon (us-west-2) will be your secondary\nYour test application is Unishop. It is a Spring Boot Java application deployed on a single Amazon Elastic Compute Cloud (EC2) instance using a public subnet. Your datastore is an Amazon RDS MySQL database with a frontend written using bootstrap and hosted in Amazon Simple Storage Service (S3) .\nThis module takes advantage of AWS Backup which will be your single pane of glass to backup, copy and restore your Amazon EC2 instance and Amazon RDS database to the secondary region.\nYou will use Amazon S3 Cross-Region Replication (CRR) to replicate your S3 objects to the secondary region.\nCloudFormation will be used to configure the infrastructure and deploy the application. Provisioning your infrastructure with infrastructure as code (IaC) methodologies is a best practice. CloudFormation is an easy way to speed up cloud provisioning with infrastructure as code.\nPrior experience with the AWS Console and Linux command line is helpful but not required.\nBecause this workload has only one EC2 instance that is deployed in only one Availability Zone, this architecture does not meet the AWS Well Architected Framework best practices for running highly available production applications but suffices for this workshop.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/4-prepare-secondary-region/copy/",
+	"title": "Copy",
+	"tags": [],
+	"description": "",
+	"content": "You are going to copy the resources to your secondary region Oregon (us-west-2).\nCopy EC2 Backup 1.1 Click the Backup Vaults link, then click the Default link.\n1.2 In the Recovery Points section. Select the EC2 backup. Click Copy under the Actions dropdown.\nIf you don\u0026rsquo;t see your backup, check the status of the Backup Job. Click the Jobs link, then click the Backup jobs link. Verify the Status of your EC2 backup is Completed.\n1.3 Select US West (Oregon) as the Copy to destination, then select Choose an IAM Role and select Team Role as the Role name. Click the Copy button.\n1.4 This will create a Copy job.\nCopy the RDS backup 2.1 Click the Backup Vaults link, then click the Default link.\n2.2 In the Recovery Points section. Select the RDS backup. Click Copy under the Actions dropdown.\nIf you don\u0026rsquo;t see your backup, check the status of the Backup Job. Click the Jobs link, then click the Backup jobs link. Verify the Status of your RDS backup is Completed.\n2.3 Select US West (Oregon) as the Copy to destination, then select Choose an IAM Role and select Team Role as the Role name. Click the Copy button.\n2.4 This will create a Copy job.\nYou should see your two copy jobs.\nAs each job moves into a status of Completed, you can move onto Failover. This may take several minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/2-dynamodb/",
+	"title": "DynamoDB",
+	"tags": [],
+	"description": "",
+	"content": "When you create a DynamoDB global table , it consists of multiple replica tables (one per AWS Region) that DynamoDB treats as a single unit. Every replica has the same table name and the same primary key schema. When an application writes data to a replica table in one AWS region, DynamoDB propagates the write to the other replica tables in the other AWS regions automatically.\nConfigure Amazon DynamoDB Global Tables 1.1 Click DynamoDB to navigate to the dashboard in the N. Virginia (us-east-1) regions.\n1.2 Click the Tables link.\n1.3 Click the unishophotstandby link.\n1.4 Click the Global Tables link, click the Create replica button.\n1.5 Select US West (Oregon) as the Available replication Regions, then click the Create replica button.\nWait for the status to show Active before moving on to the next step.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/4-failover/ec2/",
+	"title": "EC2",
+	"tags": [],
+	"description": "",
+	"content": "Launch EC2 1.1 Click AMIs to navigate to the dashboard in the Oregon (us-west-2) region.\nYou will need to wait for the pilotAMI to have a status of Available before moving on to the next step. This can take several minutes.\n1.2 Select pilotAMI. Click the Launch instance from AMI button.\n1.3 Enter pilot-secondary as the Name.\n1.4 In the Key pair (login) section. Select Proceed without a key pair (not recommended) as the Key pair name.\n1.5 In the Network settings section click the Edit button.\n1.6 Select the VPC that is NOT the default VPC as the VPC. Select Select existing security group for the Firewall (security groups) and then select network-stack-WebServerSecurityGroup-xxx as the Common security groups.\n1.7 Expand the Advanced details section. Select pilot-secondary-S3InstanceProfile-xxx as the IAM instance profile.\n1.8 You are going to want to bootstrap the instance to have the configurations necessary for the Unishop application in the Oregon (us-west-2) region to connect to the new primary writer database in the Oregon (us-west-2) region. You use user data to achieve this.\nCopy and paste the below script as the User data, then click the Launch instance button.\nUser Data Script: #!/bin/bash sudo su ec2-user export AWS_DEFAULT_REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python -c \u0026#34;import json,sys; print json.loads(sys.stdin.read())[\u0026#39;region\u0026#39;]\u0026#34;) export DATABASE=$(aws rds describe-db-clusters --region $AWS_DEFAULT_REGION --db-cluster-identifier pilot-secondary --query \u0026#39;DBClusters[*].[Endpoint]\u0026#39; --output text) sudo bash -c \u0026#34;cat \u0026gt;/home/ec2-user/unishopcfg.sh\u0026#34; \u0026lt;\u0026lt;EOF #!/bin/bash export DB_ENDPOINT=$DATABASE EOF sudo systemctl restart unishop You will need to wait for the instance to be successfully launched. You can click the View all instances button to navigate to the EC2 dashboard. Verify pilot-secondary has an Instance state of Running. This can take several minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/3-failover/ec2/",
+	"title": "EC2",
+	"tags": [],
+	"description": "",
+	"content": "Update Launch Configuration and Auto Scaling Group (ASG) 1.1 Click CloudFormation Stacks to navigate to the dashboard in the Oregon (us-west-2) region.\n1.2 Select the warm-secondary stack and click Update.\n1.3 Chose Use current template and click Next to continue.\n1.4 Update the IsPromote parameter to yes and click Next to continue.****\n1.5 Scroll to the bottom of the page, click the checkbox to acknowledge IAM role creation, and then click Update stack.\nAuto Scaling Group (ASG) The following changes were made when you updated your CloudFormation template:\nLaunch Configuration was modified in order to connect your application to the newly promoted Aurora cluster. Auto Scaling Groups was modified in order to scale out your EC2 capacity from 1 instance to 2 instances to match your primary region N. Virginia (us-east-1) EC2 capacity. We can now be confident that when we failover, our secondary region Oregon (us-west-2) can handle production level request traffic.\n2.1 Click Auto Scaling Groups to navigate to the dashboard in the Oregon (us-west-2) region.\n2.2 Click on the warm-secondary-WebServerGroup-xxx link.\n2.3 Click the Activity link, then scroll down to the Activity History section. You should see a new instance launching in response to the Auto Scaling Group update.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/2-s3-cross-region-replication/iam-role/",
+	"title": "IAM Role",
+	"tags": [],
+	"description": "",
+	"content": "Creating the IAM Role for S3 Replication You need to create an IAM role that has access to perform the Amazon S3 replication functions.\n1.1 Click IAM to navigate to the IAM Roles dashboard.\n1.2 Click the Create Role button. 1.3 Choose AWS service and under Use case select S3 in both fields, then click the Next button.\n1.4 Search for: AmazonS3FullAccess in the Permissions policies and select as the Policy Name, then click the Next button.\n1.5 Enter\nS3ReplicationRole as the Role name, then scroll down and click the Create role button.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/1-lab-prerequisites/on-your-own/primary-region/",
+	"title": "Primary Region",
+	"tags": [],
+	"description": "",
+	"content": "Deploying the Amazon CloudFormation Templates 1. Deploy Network Configuration Only complete this section if you have not already deployed the Network Configuration as part of another disaster recovery workshop. All disaster recovery workshops share the same Network Configuration stack and only needs to be deployed once. If you have already deployed the Network Configuration as part of another workshop you can move onto section 2. Deploy Application.\n1.1 Create Network Infrastructure in primary region N. Virginia (us-east-1) by launching this CloudFormation Template .\n1.2 Validate CloudFormation stack name network-stack Click the Next button.\n1.3 Click the Next button.\n1.4 Click the Submit button.\n2. Deploy Application 2.1 Create application in primary region N. Virginia (us-east-1) by launching this CloudFormation Template.\n2.2 Validate CloudFormation stack name backupandrestore-primary. Leave LatestAmiId as the default values\nLeave NetworkStackName as the default values, unless you\u0026rsquo;ve changed it in the previous step\nClick the Next button.\n2.3 Leave all selections as default and click the Next button.\n2.4 Scroll to the bottom of the page and enable the I acknowledge that AWS CloudFormation might create IAM resources with custom names checkbox, then click the Submit button.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/1-lab-prerequisites/on-your-own/primary-region/",
+	"title": "Primary Region",
+	"tags": [],
+	"description": "",
+	"content": "Deploying the Amazon CloudFormation Templates 1. Deploy Network Configuration Only complete this section if you have not already deployed the Network Configuration as part of another disaster recovery workshop. All disaster recovery workshops share the same Network Configuration stack and only needs to be deployed once. If you have already deployed the Network Configuration as part of another workshop you can move onto section 2. Deploy Application.\n1.1 Create Network Infrastructure in primary region N. Virginia (us-east-1) by launching this CloudFormation Template .\n1.2 Validate CloudFormation stack name network-stack Click the Next button.\n1.3 Click the Next button.\n1.4 Click the Submit button.\n1.4 Click the Submit button.\n2. Deploy Application 2.1 Create application in primary region N. Virginia (us-east-1) by launching this CloudFormation Template .\n2.2 Validate CloudFormation stack name pilot-primary.\rLeave isPrimary as the default values\nLeave LatestAmiId as the default values\nLeave NetworkStackName as the default values, unless you\u0026rsquo;ve changed it in the previous step\nClick the Next button.\n2.3 Leave all selections as default and click the Next button.\n2.4 Scroll to the bottom of the page and enable the I acknowledge that AWS CloudFormation might create IAM resources with custom names checkbox, then click the Submit button.\nYou will need to wait for the Pilot Light Primary Region stack to have a status of Completed before moving on to the next step. This will take approximately 15 minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/1-lab-prerequisites/on-your-own/primary-region/",
+	"title": "Primary Region",
+	"tags": [],
+	"description": "",
+	"content": "Deploying the Amazon CloudFormation Templates 1. Deploy Network Configuration Only complete this section if you have not already deployed the Network Configuration as part of another disaster recovery workshop. All disaster recovery workshops share the same Network Configuration stack and only needs to be deployed once. If you have already deployed the Network Configuration as part of another workshop you can move onto section 2. Deploy Application.\n1.1 Create Network Infrastructure in primary region N. Virginia (us-east-1) by launching this CloudFormation Template .\n1.2 Validate CloudFormation stack name network-stack Click the Next button.\n1.3 Click the Next button.\n1.4 Click the Submit button.\n1.4 Click the Submit button.\n2. Deploy Application 2.1 Create application in primary region N. Virginia (us-east-1) by launching this CloudFormation Template .\n2.2 Validate CloudFormation stack name\nwarm-primary Leave isPrimary as the default values\nLeave isPromote as the default values\n****\nLeave LatestAmiId as the default values\nLeave NetworkStackName as the default values, unless you\u0026rsquo;ve changed it in the previous step\nClick the Next button.\n2.3 Leave all selections as default and click the Next button.\n2.4 Scroll to the bottom of the page and enable the I acknowledge that AWS CloudFormation might create IAM resources with custom names checkbox, then click the Submit button.\n****\nYou will need to wait for the Warm Standby Primary Region stack to have a status of Completed before moving on to the next step. This will take approximately 15 minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/2-s3-cross-region-replication/",
+	"title": "S3 Cross-Region Replication",
+	"tags": [],
+	"description": "",
+	"content": "In this Lab we will configure the replication for the Amazon S3 Buckets deployed in the primary region N. Virginia (us-east-1) to the Oregon (us-west-2) - you secondary region\nYou will go through the steps required to create required IAM role, configure and validate the Amazon S3 replication.\nS3 Buckets validation IAM Role Configure S3 Replication "
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/1-lab-prerequisites/on-your-own/secondary-region/",
+	"title": "Secondary Region",
+	"tags": [],
+	"description": "",
+	"content": "Deploying the Amazon CloudFormation Templates 1. Deploy Network Configuration Only complete this section if you have not already deployed the Network Configuration as part of another disaster recovery workshop. All disaster recovery workshops share the same Network Configuration stack and only needs to be deployed once. If you have already deployed the Network Configuration as part of another workshop you can move onto section 2. Deploy Application.\n1.1 Create Network Infrastructure in secondary region Oregon (us-west-2) by launching this CloudFormation Template .\n1.2 Validate CloudFormation stack name\nnetwork-stack Click the Next button.\n1.3 Click the Next button.\n1.4 Click the Submit button.\n2. Deploy Application Deploying the Amazon CloudFormation Template 2.1 Create the application in the secondary region Oregon (us-west-2) by launching CloudFormation Template .\n2.2 Validate CloudFormation stack name hot-secondary Change isPrimary to no\nLeave LatestAmiId as the default values\nLeave NetworkStackName as the default values, unless you\u0026rsquo;ve changed it in the previous step\nClick the Next button.\n2.3 Leave all selections as default and click the Next button.\n2.4 Scroll to the bottom of the page and enable the I acknowledge that AWS CloudFormation might create IAM resources with custom names checkbox, then click the Create stack button.\nYou will need to wait for the Hot Standby Secondary Region stack to have a status of Completed before moving on to the next step. This will take approximately 15 minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/2-verify-website/",
+	"title": "Verify Website",
+	"tags": [],
+	"description": "",
+	"content": "Primary Region 1.1 Click CloudFormation Stacks to navigate to the dashboard in N. Virginia (us-east-1) region.\n1.2 Choose the pilot-primary stack.\n1.3 Click the Outputs link.\n1.4 Click on the WebsiteURL output link and open in a new browser tab or window.\nSignup 2.1 Register yourself into the application using the Signup link in the top menu. You need to provide an e-mail address, which does not need to be valid. However, be sure to remember it as you will need it to verify the data replication later.\n2.2 You will see a confirmation message saying Successfully Signed Up. You may now Login.\n2.3 Log in to the application using the Login link in the top menu, use your e-mail address from the previous step. Also notice how the website is being hosted from your primary region N. Virginia (us-east-1).\n2.4 Add items to your shopping cart, verifying that the items in your shopping cart counter are being incremented.\nSecondary Region Your secondary region should be unavailable. In a pilot light disaster recovery strategy there are no compute instances.\n3.1 Click CloudFormation Stacks to navigate to the dashboard in Oregon (us-west-2) region.\n3.2 Choose the pilot-secondary stack.\n3.3 Click the Outputs link.\n3.4 Click on the WebsiteURL output link and open in a new browser tab or window.\n3.5 You should see a 404 error page.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/2-verify-website/",
+	"title": "Verify Website",
+	"tags": [],
+	"description": "",
+	"content": "Primary Region 1.1 Click CloudFormation Stacks to navigate to the dashboard in the N. Virginia (us-east-1) region.\n1.2 Choose the warm-primary stack.\n1.3 Click the Outputs link.\n1.4 Click on the WebsiteURL output link and open in a new browser tab or window.\nSignup 2.1 Register yourself into the application using the Signup link in the top menu. You need to provide an email address, which does not need to be valid. However, be sure to remember it as you will need it to verify the data replication later.\n2.2 You will see a confirmation message saying Successfully Signed Up. You may now Login.\n2.3 Log in to the application using the Login link in the top menu, use your email address from the previous step. Also notice how the website is being hosted from your primary region N. Virginia (us-east-1).\n2.4 Add items to your shopping cart, verifying that the total cart items count shown at the top of the page are being increased.\nSecondary Region You are taking advantage of Amazon Aurora read replica write forwarding . With this feature enabled, writes can be sent to a read replica in a secondary region, and will be seamlessly forwarded to the writer in the primary region over a secure communication channel. It is considered a best practice to enable write forwarding in your secondary region for Warm Standby disaster recovery strategy for testing purposes.\n3.1 Click CloudFormation Stacks to navigate to the dashboard in the Oregon (us-west-2) region.\n3.2 Choose the warm-secondary stack.\n3.3 Click the Outputs link.\n3.4 Click on the WebsiteURL output link and open in a new browser tab or window.\n3.5 Log in to the application using the Login link in the top menu, use your email from Step 2.1 above.\n3.6 You should see the same number of items in your cart that you added in Step 2.4 above. Also notice the website is being hosted from your secondary region Oregon (us-west-2)\n3.7 Add additional items to your cart and see the increased total cart items shown at the top of the page.\n3.8 Return to your primary region website. If you already have it open, click on the Cart in the menu bar, otherwise follow steps above in Primary Region section to log back in. You should see the increased cart total in your primary region N. Virginia (us-east-1).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/3-failover/",
+	"title": "Chuyển đổi dự phòng",
+	"tags": [],
+	"description": "",
+	"content": "When a regional service event affects the Unishop application in the primary region N. Virginia (us-east-1), we want to fail over to the secondary region Oregon (us-west-2).\nWe will manually perform a series of tasks to failover our workload to our secondary region Oregon (us-west-2).\nIn a production environment, we would automate these tasks as part of our failover process.\nSimulating a Regional Service Event You will now simulate a regional service event affecting the Unishop website in N. Virginia (us-east-1). You are going to achieve this by blocking public access to the S3 bucket that is hosting the website making the Unishop website unavailable.\n1.1 Click S3 to navigate to the dashboard.\n1.2 Click on the warm-primary-uibucket-xxxx link.\n1.3 Click the Permissions link. In the Block public access (bucket settings) section, click the Edit button.\n1.4 Enable the Block all public access checkbox, then click the Save changes button.\n1.5 Type confirm, then click the Confirm button.\n1.6 Click the Properties link.\n1.7 In the Static website hosting section. Click on the Bucket website endpoint link.\n1.8 You should get a 403 Forbidden error.\nIf you do not get a 403 Forbidden error, this might be due to caching. Please try refreshing the page or opening the website in a different browser or incognito mode to see the error.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/2-s3-cross-region-replication/configure-s3-replication/",
+	"title": "Configure S3 Replication",
+	"tags": [],
+	"description": "",
+	"content": "Create Replication rule 1.1 Click the link for backupandrestore-primary-uibucket-xxxx.\n1.2 Click the Management link. In the Replication rule section, click the Create replication rule button.\n1.3 Enter\nPrimaryToSecondary as the Replication rule name and select Apply to all objects in the bucket.\n1.4 Select Choose a bucket in this account and then select backupandrestore-secondary-uibucket-xxxx as the Bucket name. Select S3ReplicationRole as the IAM role.\n1.5 in the Additional replication options section enable the Replication Time Control (RTC) checkbox, then click the Save button.\n1.6 Your bucket is (almost) empty and you don\u0026rsquo;t want to replicate the existing objects, click the Submit button.\nReplicate S3 bucket You will manuall copy objects into your backupandrestore-primary-uibucket-xxxx in your primary region so you can observe the replication into your backupandrestore-secondary-uibucket-xxxx bucket in your secondary region. In a production environment, you would automate these steps as part of your CI/CD pipeline.\n2.1 Click AWS Cloudshell to navigate to the dashboard in the N. Virginia (us-east-1) region.\n2.2 If you have never used CloudShell you will be prompted with a Welcome to AWS CloudShell message. Check Do not show again and click the Close button.\n2.3 Once you see the prompt, paste the following AWS CLI command.\nYou will be prompted with a Safe Paste for multiline text message, click the Paste button.\nexport S3_BUCKET=$(aws s3api list-buckets --region us-east-1 --output text --query 'Buckets[?starts_with(Name, `backupandrestore-primary-uibucket`) == `true`]'.Name)\ncurl https://ws-assets-prod-iad-r-iad-ed304a55c2ca1aee.s3.us-east-1.amazonaws.com/6b7a41c6-3cae-45f2-bf2c-72c64b55d920/UniShopUI.zip --output UniShopUI.zip\nunzip UniShopUI.zip -d UniShopUI/ aws s3 cp UniShopUI/UniShopUI/ s3://$S3_BUCKET/ --exclude \u0026quot;config.json\u0026quot; --recursive\nVerify Replication 3.1 Click Amazon S3 to navigate back to the dashboard.\n3.2 Click the link for backupandrestore-secondary-uibucket-xxxx.\n3.3 You should see the replicated objects.\nIt might take a couple of minutes to replicate objects.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/",
+	"title": "Pilot Light",
+	"tags": [],
+	"description": "",
+	"content": "In this module, you will go through the Pilot Light disaster recovery strategy. To learn more about this disaster recovery strategy, you can review this Disaster Recovery blog .\nPilot Light disaster recovery strategy has Recovery Point Objective(RPO) / Recovery Time Objective (RTO) within tens of minutes. For the pilot light strategy secondary region, the data is live and core infrastructure is provisioned, but the services are either idle or absent.\nYour application is currently deployed in the primary region N. Virginia (us-east-1). N. California (us-west-1) will be your secondary\nYour test application is Unishop. It is a Spring Boot Java application deployed on a single Amazon Elastic Compute Cloud (EC2) instance using a public subnet. Your datastore is an Amazon Aurora MySQL database with a frontend written using bootstrap and hosted in Amazon Simple Storage Service (S3) .\nThis module takes advantage of Amazon Machine Images (AMI) which you will use to launch your Amazon EC2 instance and Amazon Aurora Global Database to replicate your Amazon Aurora MySQL data to your secondary region.\nCloudFormation will be used to configure the infrastructure and deploy the application. Provisioning your infrastructure with infrastructure as code (IaC) methodologies is a best practice. CloudFormation is an easy way to speed up cloud provisioning with infrastructure as code.\nPrior experience with the AWS Console and Linux command line are helpful but not required.\nBecause this workload has only one EC2 instance that is deployed in only one Availability Zone, this architecture does not meet the AWS Well Architected Framework best practices for running highly available production applications but suffices for this workshop.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/3-prepare-secondary-region/",
+	"title": "Prepare Secondary Region",
+	"tags": [],
+	"description": "",
+	"content": "\rYou will manually create and copy an Amazon Machine Images (AMI) to your secondary region Oregon (us-west-2).\nIn a production environment, you would automate these steps as part of your CI/CD pipeline. You want to ensure that your primary region and your secondary region are configured the same and with the same artifacts to ensure if you need to failover to your secondary region, your workload will work as it does in your primary region.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/1-lab-prerequisites/on-your-own/secondary-region/",
+	"title": "Secondary Region",
+	"tags": [],
+	"description": "",
+	"content": "Deploying the Amazon CloudFormation Templates 1. Deploy Network Configuration Only complete this section if you have not already deployed the Network Configuration as part of another disaster recovery workshop. All disaster recovery workshops share the same Network Configuration stack and only needs to be deployed once. If you have already deployed the Network Configuration as part of another workshop you can move onto section 2. Deploy Application.\n1.1 Create Network Infrastructure in secondary region Oregon (us-west-2) by launching this CloudFormation Template .\n1.2 Validate CloudFormation stack name network-stack. Click the Next button.\n1.3 Click the Next button. 1.4 Click the Submit button.\n2. Deploy Application 2.1 Create the application in the secondary region Oregon (us-west-2) by launching CloudFormation Template .\n2.2 Click the Next button.\n2.3 Leave all selections as default and click the Next button.\n2.4 Scroll to the bottom of the page and enable the I acknowledge that AWS CloudFormation might create IAM resources with custom names checkbox, then click the Create stack button.\nYou will need to wait for the BackupAndRestore Primary Region stack to have a status of Completed before moving on to the next step. This will take approximately 15 minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/1-lab-prerequisites/on-your-own/secondary-region-copy/",
+	"title": "Secondary Region",
+	"tags": [],
+	"description": "",
+	"content": "Deploying the Amazon CloudFormation Templates 1. Deploy Network Configuration Only complete this section if you have not already deployed the Network Configuration as part of another disaster recovery workshop. All disaster recovery workshops share the same Network Configuration stack and only needs to be deployed once. If you have already deployed the Network Configuration as part of another workshop you can move onto section 2. Deploy Application.\n1.1 Create Network Infrastructure in secondary region Oregon (us-west-2) by launching this CloudFormation Template .\n1.2 Validate CloudFormation stack name network-stack. Click the Next button.\n1.3 Click the Next button. 1.4 Click the Submit button.\n2. Deploy Application 2.1 Create the application in the secondary region Oregon (us-west-2) by launching CloudFormation Template .\nClick the Next button.\n2.2 Validate CloudFormation stack name pilot-secondary Change isPrimary to No\nLeave LatestAmiId as the default values\nLeave NetworkStackName as the default values, unless you\u0026rsquo;ve changed it in the previous step\nClick the Next button.\n2.3 Leave all selections as default and click the Next button.\n2.4 Scroll to the bottom of the page and enable the I acknowledge that AWS CloudFormation might create IAM resources with custom names checkbox, then click the Create stack button.\nYou will need to wait for the Pilot Light Secondary Region stack to have a status of Completed before moving on to the next step. This will take approximately 15 minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/1-lab-prerequisites/on-your-own/secondary-region/",
+	"title": "Secondary Region",
+	"tags": [],
+	"description": "",
+	"content": "Deploying the Amazon CloudFormation Templates 1. Deploy Network Configuration Only complete this section if you have not already deployed the Network Configuration as part of another disaster recovery workshop. All disaster recovery workshops share the same Network Configuration stack and only needs to be deployed once. If you have already deployed the Network Configuration as part of another workshop you can move onto section 2. Deploy Application.\n1.1 Create Network Infrastructure in secondary region Oregon (us-west-2) by launching this CloudFormation Template .\n1.2 Validate CloudFormation stack name network-stack. Click the Next button.\n1.3 Click the Next button. 1.4 Click the Submit button.\n2. Deploy Application 2.1 Create the application in the secondary region Oregon (us-west-2) by launching CloudFormation Template .\nClick the Next button.\n2.2 Validate CloudFormation stack name warm-secondary.\nChange isPrimary to No\nLeave isPromote as the default values\nLeave LatestAmiId as the default values\nLeave NetworkStackName as the default values, unless you\u0026rsquo;ve changed it in the previous step\nClick the Next button.\n2.3 Leave all selections as default and click the Next button.\n2.4 Scroll to the bottom of the page and enable the I acknowledge that AWS CloudFormation might create IAM resources with custom names checkbox, then click the Create stack button.\nYou will need to wait for the Warm Standby Secondary Region stack to have a status of Completed before moving on to the next step. This will take approximately 15 minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/3-verify-primary-region/",
+	"title": "Verify Primary Region",
+	"tags": [],
+	"description": "",
+	"content": "Verify Primary Region Website Let\u0026rsquo;s verify that everything is working as expected in your primary region N. Virginia (us-east-1).\n1.1 Click CloudFormation Stacks to navigate to the dashboard in the N. Virginia (us-east-1) region.\n1.2 Select backupandrestore-primary under Stacks.\n1.3 Click on the Outputs link and open in a new browser tab or window.\n1.4 Click on the WebsiteURL link. You will see The Unicorn Shop - us-east-1.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/3-verify-websites/",
+	"title": "Verify Websites",
+	"tags": [],
+	"description": "",
+	"content": "Primary Region 1.1 Click CloudFormation Stacks to navigate to the dashboard in the N. Virginia (us-east-1) region.\n1.2 Choose the hot-primary stack.\n1.3 Click the Outputs link.\nprimary-region-1\n1.4 Copy and paste the WebsiteURL value to your clipboard you will need it in the CloudFront section. Click on the WebsiteURL output link and open in a new browser tab or window.\nprimary-region-2\nSignup 2.1 Register yourself into the application using the Signup link in the top menu. You need to provide an email address, which does not need to be valid. However, be sure to remember it as you will need it to verify the data replication later.\n2.2 You will see a confirmation message saying Successfully Signed Up. You may now Login.\n2.3 Log in to the application using the Login link in the top menu, use your email address from the previous step. Also notice how the website is being hosted from your primary region N. Virginia (us-east-1).\n****\n2.4 Add items to your shopping cart, verifying that the total cart items count shown at the top of the page are being increased.\nIt may take a couple seconds for the items to appear in your shopping cart.\nSecondary Region You are taking advantage of Amazon DynamoDB global tables . A global table is a collection of one or more replica tables, all owned by a single AWS account. A replica table (or replica, for short) is a single DynamoDB table that functions as a part of a global table. Each replica stores the same set of data items.\n3.1 Click CloudFormation Stacks to navigate to the dashboard in the Oregon (us-west-2) region.\n3.2 Choose the hot-secondary stack.\n3.3 Click the Outputs link.\n3.4 Copy and paste the WebsiteURL value to your clipboard you will need it in the CloudFront section. Click on the WebsiteURL output link and open in a new browser tab or window.\n3.5 Log in to the application using the Login link in the top menu, use your email from Step 2.1 above.\n3.6 You should see the same number of items in your cart that you added in Step 2.4 above. You may need to click on the Cart in the menu bar to force a reload.Also notice the website is being hosted from your secondary region Oregon (us-west-2).\n3.7 Add additional items to your cart and see the increased total cart items shown at the top of the page.\n3.8 Return to your primary region website and do a browser refresh. You should see the increased cart total in your primary region N. Virginia (us-east-1).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/4-cloudfront/",
+	"title": "CloudFront",
+	"tags": [],
+	"description": "",
+	"content": "You can improve resiliency and increase availability for specific scenarios by setting up CloudFront with origin failover.\nCreate the Amazon CloudFront Distribution 1.1 Click CloudFront to navigate to the dashboard.\n1.2 Click the Create a CloudFront Distribution button.\n1.3 Select** hot-primary-uibucket-xxx** from the drop down list for the Origin domain value. Click the Use website endpoint button since our bucket is hosting our static website.\n1.4 In the Cache key and origin requests section, select CachingDisabled for the Cache Policy to disable CloudFront caching.\nOne of the purposes of using CloudFront is to reduce the number of requests that your origin server must respond to directly. With CloudFront caching, more objects are served from CloudFront edge locations, which are closer to your users. This reduces the load on your origin server and reduces latency. However, that behavior masks your mechanism (disabling the UI bucket) from properly simulating an outage. For more information, see Amazon CloudFront Optimizing caching and availability . In production, customers typically want to use the default value CachingOptimized.\n1.5 In the Web Application Firewall (WAF) section, select Do not enable security protections.\nBest practice to keep your application secure from the most common web threats and security vulnerabilities using AWS WAF is to select Enable security protections. Blocked requests are stopped before they reach your web servers.\n1.6 Click the Create Distribution button.\nConfigure an Additional Origin You will now add an additional Origin and use your hot-secondary-uibucket-xxxx.\n2.1 Click the Origins link, then click the Create origin button.\n2.2 Select hot-secondary-uibucket-xxx from the drop down list for the Origin domain value. Click the Use website endpoint button since our bucket is hosting our static website. Then click the Create origin button.\nConfigure the Origin Group 3.1 Click the Create Origin Group button.\n3.2 Select hot-primary-uibucket-xxxx as the Origins, then click the Add button. Select hot-secondary-uibucket-xxxx as the Origins, then click the Add button. Enter hot-standby-origin-group as the Name. Enable all checkboxes for Failover criteria, then click the Create origin group.\nConfigure Behaviors 4.1 Click the Behaviors link. Select Default (*), then click the Edit button.\n4.2 Select** hot-standby-origin-group** as the Origin and Origin Groups. Click the Save changes button.****\n4.3 Click the Distributions link.\n4.4 Wait for Status to be Enabled and for Last Modified to have a date.\nVerify the Distribution 5.1 Copy the CloudFront Distribution\u0026rsquo;s Domain Name into a new browser window.\n5.2 Confirm that the website\u0026rsquo;s header says The Unicorn Shop - us-east-1. Log in to the application using the Login link in the top menu and the email you used previously. You should see the items in your cart that you previously added.\nOne of the purposes of using CloudFront is to support HTTPS, hosting a static website in S3 does not support this protocol. You should use best practices when hosting a static website on AWS which is to use CloudFront. For more information, see How do I use CloudFront to serve HTTPS requests for my Amazon S3 bucket? To use HTTPS with a custom domain, see Configuring a static website using a custom domain registered with Route 53..\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/4-failover/",
+	"title": "Failover",
+	"tags": [],
+	"description": "",
+	"content": "In the event a disaster affects your primary region N. Virginia (us-east-1), you want to bring up the resources in the secondary region Oregon (us-west-2).\nYou will manually perform a series of tasks to failover your workload to your secondary region Oregon (us-west-2).\nIn a production environment, you would automate these tasks as part of your failover process.\nSimulating a Regional Service Event You will now simulate a regional service event affecting the Unishop website in N. Virginia (us-east-1). You are going to achieve this by blocking public access to the S3 bucket that is hosting the website making the Unishop website unavailable.\n1.1 Click S3 to navigate to the dashboard.\n1.2 Click on the pilot-primary-uibucket-xxxx link.\n1.3 Click the Permissions link. In the Block public access (bucket settings) section, click the Edit button.\n1.4 Enable the Block all public access checkbox, then click the Save changes button.\n1.5 Type confirm, then click the Confirm button.\n1.6 Click the Properties link.\n1.7 Scroll down to the Static website hosting section. Click on the Bucket website endpoint link.\n1.8 You should get a 403 Forbidden error.\nIf you do not get a 403 Forbidden error, this might be due to caching. Please try refreshing the page or opening the website in a different browser or incognito mode to see the error.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/4-prepare-secondary-region/",
+	"title": "Prepare Secondary Region",
+	"tags": [],
+	"description": "",
+	"content": "AWS Backup is a way to centralize and automate data protection across AWS services and hybrid workloads. AWS Backup offers a cost-effective, fully managed, policy-based service that further simplifies data protection at scale. AWS Backup also helps you support your regulatory compliance or business policies for data protection. Together with AWS Organizations, you can use AWS Backup to centrally deploy data protection policies to configure, manage, and govern your backup activity across your company’s AWS accounts and resources.\nYou can find a list of AWS Backup supported resources here.\nYou will manually perform a series of tasks to backup, copy and restore your application in the secondary region Oregon (us-west-2). In a production environment, you would automate these steps by creating a backup plan to schedule recurring backups to meet your target RPO.\nIf you are using your own AWS account you may want to create a non-default vault for this workshop. this will prevent commingling of workshop backups with other backups in the default vault. Instructions can be found in the service documentation .\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/4-verify-failover/",
+	"title": "Verify Failover",
+	"tags": [],
+	"description": "",
+	"content": "Secondary Region 1.1 Click CloudFormation Stacks to navigate to the dashboard in the Oregon (us-west-2) region.\n1.2 Choose the warm-secondary stack.\n1.3 Click the Outputs link.\n1.4 Click on the WebsiteURL output link and open in a new browser tab or window.\nIf you still have the website opened from a previous step you will need to Logout before performing the next steps.\nVerify the Website 2.1 Log in to the application. You need to provide the registered email from the Pre-requisites \u0026gt; Primary Region section.\n2.2 You should see items in your shopping cart that you added from the primary region N. Virginia (us-east-1). You may need to click on the Cart in the menu bar to force a reload.\nIf you do not see us-west-2, this might be due to caching. Please try doing a hard-page refresh (using CTRL+F5).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/",
+	"title": "Warm Standby",
+	"tags": [],
+	"description": "",
+	"content": "In this module, you will go through the Warm Standby disaster recovery strategy. To learn more about this disaster recovery strategy, you can review this Disaster Recovery blog .\nWarm Standby disaster recovery strategy has Recovery Point Objective(RPO) / Recovery Time Objective (RTO) within minutes. For the warm standby strategy secondary region, the data is live and core infrastructure is provisioned and the services are running at a reduced capacity.\nOur application is currently deployed in our primary region N. Virginia (us-east-1) and we will use Oregon (us-west-2) as our secondary region.\nYour test application is Unishop. It is a Spring Boot Java application deployed using Elastic Load Balancing and two Amazon Elastic Compute Cloud (EC2) instances using a public subnet. Datastore is an Amazon Aurora MySQL database with a frontend written using bootstrap and hosted in Amazon Simple Storage Service (S3) .\nThis module takes advantage of Auto Scaling Groups (ASG) which will allow us to scale out in the secondary region compute instances during failover. Amazon Aurora Global Database is used to replicate your Amazon Aurora MySQL data to the secondary region. You are also taking advantage of Amazon Aurora read replica write forwarding . With this feature enabled, writes can be sent to a read replica in a secondary region, and will be seamlessly forwarded to the writer in the primary region over a secure communication channel.\nCloudFormation will be used to configure the infrastructure and deploy the application. Provisioning your infrastructure with infrastructure as code (IaC) methodologies is a best practice. CloudFormation is an easy way to speed up cloud provisioning with infrastructure as code.\nPrior experience with the AWS Console and Linux command line are helpful but not required.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/4-warm-standby/5-clean-up/",
+	"title": "Clean up",
+	"tags": [],
+	"description": "",
+	"content": "\rIf you are running this workshop via an instructor led training, you do NOT need to complete this section.\nS3 Cleanup 1.1 Click S3 to navigate to the dashboard.\n1.2 Select the warm-primary-uibucket-xxxx and click Empty.\n1.3 Enter permanently delete into the confirmation box and then click Empty.\n1.4 When you see the green banner at the top stating the bucket has is empty, click Exit.\nPlease repeat steps 1.1 through 1.4 for the following buckets:\nwarm-secondary-uibucket-xxxx\nDatabase Cleanup This step is required as you did manual promotion for the Aurora Database.\n2.1 Click RDS to navigate to the dashboard in the N. Virginia (us-east-1) region.\n2.2 Select unishop-warm database under warm-primary cluster and select Delete under Actions.\n2.3 De-select Create final snapshot, select I acknowledge\u0026hellip;, enter delete me then click Delete button.\n2.4 Select warm-primary cluster and select Remove from global database under Actions and then confirm promotion.\n2.5 Select warm-primary cluster and select Delete under Actions. (You must wait for the unishop-warm database to delete before deleting the cluster).\n2.6 Select No for Create final snapshot?, select I acknowledge\u0026hellip;, then click Delete DB cluster.\nPlease repeat steps 2.2 through 2.4 for the following: (You must wait for the primary database to finish deleting before you do this)\nwarm-secondary cluster\n2.7 Select warm-global and select Delete under Actions and then confirm deletion.\nWait for all the databases and clusters to finish deleting before moving to the next step.\nCloudFormation Secondary Region Cleanup 3.1 Click CloudFormation to navigate to the dashboard in the Oregon (us-west-2) region.\n3.2 Select the warm-secondary stack then click the Delete button.\n****\n3.3 Click Delete stack button.\nWait for the stack deletion to complete before moving to the next step.\nCloudFormation Primary Region Cleanup 4.1 Click CloudFormation to navigate to the dashboard in the N. Virginia (us-east-1) region.\n4.2 Select warm-primary stack then click the Delete button.\n3.3 Click Delete stack button.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/5-failover/",
+	"title": "Failover",
+	"tags": [],
+	"description": "",
+	"content": "Trong trường hợp một thảm họa ảnh hưởng đến khu vực chính của bạn, N. Virginia (us-east-1), bạn muốn khôi phục các tài nguyên trong khu vực thứ cấp Oregon (us-west-2).\nBạn sẽ thực hiện thủ công một loạt các tác vụ để chuyển đổi công việc của bạn sang khu vực thứ cấp Oregon (us-west-2). Trong môi trường sản xuất, bạn sẽ tự động hóa các tác vụ này như một phần của quy trình chuyển đổi.****\nMô phỏng sự kiện dịch vụ khu vực Khôi phục ứng dụng "
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/5-failover/",
+	"title": "Failover",
+	"tags": [],
+	"description": "",
+	"content": "When a regional service event affects the Unishop application in the primary region N. Virginia (us-east-1), we want to fail over to the secondary region Oregon (us-west-2).\nWe will manually perform a series of tasks to failover our workload to our secondary region Oregon (us-west-2).\nIn a production environment, we would automate these tasks as part of our failover process.\nSimulating a Regional Service Event You will now simulate a regional service event affecting the Unishop website in N. Virginia (us-east-1). You are going to achieve this by blocking public access to the S3 bucket that is hosting the website making the Unishop website unavailable.\n1.1 Click S3 to navigate to the dashboard.\n1.2 Click on the hot-primary-uibucket-xxxx link.\n1.3 Click the Permissions link. In the Block public access (bucket settings) section, click the Edit button.\n1.4 Enable the Block all public access checkbox, then click the Save changes button.\n1.5 Type\nconfirm , then click the Confirm button.\n1.6 Click the Properties link.\n1.7 In the Static website hosting section. Click on the Bucket website endpoint link.\n1.8 You should get a 403 Forbidden error.\nIf you do not get a 403 Forbidden error, this might be due to caching. Please try refreshing the page or opening the website in a different browser or incognito mode to see the error.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/5-verify-failover/",
+	"title": "Verify Failover",
+	"tags": [],
+	"description": "",
+	"content": "Secondary Region 1.1 Click CloudFormation Stacks to navigate to the dashboard in Oregon (us-west-2) region.\n1.2 Choose the pilot-secondary stack.\n1.3 Click the Outputs link.\n1.4 Click on the WebsiteURL output link and open in a new browser tab or window.\nIf you do not see the Unishop webpage with all the products, it could be that the EC2 instance has not completed running the bootstrapping scripts. Continue to refresh the page until you see the Unishop webpage with all the products loaded.\nVerify the Website 2.1 Log in to the application. You need to provide the registered email from the Pre-requisites \u0026gt; Primary Region section.\n2.2 You should see items in your shopping cart that you added from the primary region N. Virginia (us-east-1).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/",
+	"title": "Hot Standby",
+	"tags": [],
+	"description": "",
+	"content": "In this module, you will go through the Hot Standby disaster recovery strategy. To learn more about this disaster recovery strategy, you can review this Disaster Recovery blog .\nHot Standby disaster recovery strategy has Recovery Point Objective(RPO) / Recovery Time Objective (RTO) in almost real time. For the hot standby strategy secondary region, the data is live, core infrastructure is provisioned and the services are running at full production capacity.\nYour application is currently deployed in the primary region N. Virginia (us-east-1). Oregon (us-west-2) will be your secondary region.\nYour test application is Unishop. It is a Spring Boot Java application deployed on a single Amazon Elastic Compute Cloud (EC2)instance using a public subnet. Your datastore is an Amazon Aurora MySQL database which has user data. Your test application is also deployed using Amazon API Gateway and AWS Lambda . Your datastore is Amazon DynamoDB which has shopping cart data. The frontend is written using bootstrap and hosted in Amazon Simple Storage Service (S3) .\nYour test application is using two datastores, Amazon Aurora and Amazon DynamoDB to showcase the Disaster Recovery features of each. You are using Amazon DynamoDB to store the state of the shopping cart and you are using Amazon Aurora to store the unicorn product catalog. When you initiate failover, for the Amazon Aurora database you will not need to promote the read replica in the recovery region since you are only reading the product catalog. This can decrease recovery time since no database promotion is necessary. In the failover case of Amazon DynamoDB you have configured Global Tables which allows for multiple writers so no action is needed. For your workloads, you would choose the right datastore for your use case.\nThis module takes advantage of Amazon CloudFront which you will use as your content delivery network. You are also taking advantage of Amazon Amazon Aurora Global Database to replicate your Amazon Aurora MySQL data to your secondary region and Amazon DynamoDB Global Tables to replicate your DynamoDB data to your secondary region.\nCloudFormation will be used to configure the infrastructure and deploy the application. Provisioning your infrastructure with infrastructure as code (IaC) methodologies is a best practice. CloudFormation is an easy way to speed up cloud provisioning with infrastructure as code.\nPrior experience with the AWS Console and Linux command line are helpful but not required.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/3-pilot-light/6-clean-up/",
+	"title": "Clean up",
+	"tags": [],
+	"description": "",
+	"content": "\rIf you are running this workshop via an instructor led training, you do NOT need to complete this section.\nS3 Cleanup 1.1 CLick S3 to navigate to the dashboard..\n1.2 Select the pilot-primary-uibucket-xxxx and click Empty.\n1.3 Enter permanently delete into the confirmation box and then click Empty.\n1.4 When you see the green banner at the top stating the bucket has is empty, click Exit.\nPlease repeat steps 1.1 through 1.4 for the following buckets:\npilot-secondary-uibucket-xxxx\nDatabase Cleanup This step is required as you did manual promotion for the Aurora Database.\n2.1 Click RDS to navigate to the dashboard in Oregon (us-west-2) region.\n2.2 Select unishop database under pilot-secondary cluster and select Delete under Actions.\n2.3 De-select Create final snapshot, select I acknowledge\u0026hellip;, enter delete me then click Delete button.\n2.4 Change the region to N. Virginia using the Region Selector in the upper right corner, then select unishop database under pilot-primary cluster and select Delete under Actions.\n2.5 De-select Create final snapshot, select I acknowledge\u0026hellip;, enter delete me then click Delete button.\n2.6 Select pilot-global and select Delete under Actions and then confirm deletion.\nWait for all the databases and clusters to finish deleting before moving to the next step.\nEC2 Cleanup 3.1 Click EC2 to navigate to the dashboard in the Oregon (us-west-2) region.\n3.2 Select the pilot-secondary instance and click Terminate instance under Instance State.\nCloudFormation Secondary Region Cleanup 4.1 Click CloudFormation to navigate to the dashboard in the Oregon (us-west-2) region.\n4.2 Select the pilot-secondary stack and click Delete.\n4.3 Click Delete stack to confirm the removal.\nCloudFormation Primary Region Cleanup 5.1 Click CloudFormation to navigate to the dashboard in the N. Virginia (us-east-1) region.\n5.2 Select pilot-primary stack. Next click the Delete button to remove it.\n5.3 Click Delete stack to confirm the deletion.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/6-verify-failover/",
+	"title": "Verify Failover",
+	"tags": [],
+	"description": "",
+	"content": "Your Amazon S3 bucket that hosts the Hot-Primary website is now inaccessible. When CloudFront attempts to route the user’s request to the primary region, it will receive an HTTP 403 status error (Forbidden) just like you did. The CloudFront Distribution will automatically handle this scenario by failing over to the Hot-Secondary region.\nIf you go back and refresh your browser (using the CloudFront Distribution’s Domain Name from before), you should now see The Unicorn Shop - us-west-2 website. The user’s session should still be active, and their cart still contains the products previously added.\nIf you do not see us-west-2, this might be due to caching. Please try doing a hard-page refresh (using CTRL+F5).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/6-verify-secondary-region/",
+	"title": "Verify Secondary Region",
+	"tags": [],
+	"description": "",
+	"content": "Verify Secondary Region Website 1.1 Click S3 to navigate to the dashboard.\n1.2 Click the link for backupandrestore-secondary-uibucket-xxxx\n1.3 Click the Properties link.\n1.4 In the Static website hosting section. Click on the Bucket website endpoint link.\n1.5 You are pointing to the secondary region Oregon (us-west-2) if you see us-west-2 in the header and the unicorn products.\nIf you do not see us-west-2, this might be due to caching. Please try doing a hard-page refresh (using CTRL+F5).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/2-backup-and-restore/7-clean-up/",
+	"title": "Clean up",
+	"tags": [],
+	"description": "",
+	"content": "\rIf you are running this workshop via an instructor led training, you do NOT need to complete this section.\nAmazon S3 1.1 Click S3 to navigate to the dashboard.\n1.2 Select the bucket with prefix backupandrestore-primary-uibucket-xxxx and click the Empty button.\n1.3 Enter permanently delete into the confirmation box and then click Empty.\n1.4 Wait until you see the green banner across the top of the page, indicating the bucket is empty. Then click the Exit button.\nPlease repeat steps 1.1 through 1.4 for the following buckets:\nbackupandrestore-secondary-uibucket-xxxx\n1.5 Select the bucket with the prefix backupandrestore-secondary-uibucket-xxxx and click the Delete button.\n1.6 Confirm deletion.\nAmazon CloudFormation 2.1 Click CloudFormation to navigate to the dashboard in the N. Virginia (us-east-1) region.\n2.2 Select the backupandrestore-primary stack and click the Delete button.\n2.3 Click the Delete stack button to confirm the removal.\nPlease repeat steps 2.1 through 2.3 for the backupandrestore-secondary stack in the secondary region Oregon (us-west-2).\nAWS Backup 3.1 Click AWS Backup to navigate to the dashboard in the N. Virginia (us-east-1) region.\n3.2 Click Backup Vaults and select Default.\n3.3 Select all the backups and select Delete under Actions.\n3.4 Enter delete then click the Delete recovery points button.\nPlease repeat steps 3.1 through 3.3 for AWS Backup in the Oregon (us-west-2) region.\nAmazon EC2 4.1 Click EC2 to navigate to the dashboard in the** Oregon (us-west-2)** region.\n4.2 Select the restored instance which will NOT have a Name and will has a Security group name of backupandrestore-secondary-EC2SecurityGroup-xxxx and click Instance State, then click Terminate instance.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/5-hot-standby/7-clean-up/",
+	"title": "Clean up",
+	"tags": [],
+	"description": "",
+	"content": "If you are running this workshop via an instructor led training, you do NOT need to complete this section.\nS3 Cleanup 1.1 Click S3 to navigate to the dashboard.\n1.2 Select hot-primary-uibucket-xxxx and then click the Empty button.\n1.3 Enter permanently delete into the confirmation box and then click Empty.\n1.4 Wait until you see the green banner across the top of the page, indicating the bucket is empty. Then click the Exit button.\nPlease repeat steps 1.1 through 1.4 for the following buckets:\nhot-secondary-uibucket-xxxx\nhot-primary-assetbucket-xxxx\nhot-secondary-assetbucket-xxxx\nDynamoDB Cleanup 2.1 Click DynamoDB to navigate to the dashboard in the N. Virginia (us-east-1) region.\n2.2 Click the Tables link.\n2.3 Click unishophotstandby.\n2.4 Click the Global Tables link. Select US West(Oregon), then click the Delete replica button.\n2.5 Enter delete then click the Delete button.\nCloudFront Cleanup 3.1 Click CloudFront to navigate to the dashboard.\n3.2 Select the CloudFront distribution, then click the Disable button and confirm disable.\n3.3 Wait for the CloudFront distribution to have a status of Disabled, then select the CloudFront distribution and click the Delete button and confirm deletion.\nDatabase Cleanup This step is required as you did manual promotion for the Aurora Database.\n4.1 Click RDS to navigate to the dashboard in the Oregon (us-west-2) region.\n4.2 Select unishop-hot database under hot-secondary cluster and select Delete under Actions.\n4.3 Enter delete me then click Delete button.\n4.4 Select hot-secondary and select Remove from global database under Actions.\n4.5 Confirm by clicking Remove and promote button.\n4.6 Select hot-secondary and select Delete under Actions.\n4.7 De-select Create final snapshot, select I acknowledge\u0026hellip;\u0026rsquo;, type delete me and click the Delete DB cluster button.\n4.8 Change the region to N. Virginia using the Region Selector in the upper right corner, then select unishop-hot database under hot-primary cluster and select Delete under Actions.\n4.9 Enter delete me then click Delete button.\n4.10 Select hot-primary and select Delete under Actions.\n4.11 De-select Create final snapshot, select I acknowledge\u0026hellip;\u0026rsquo;, type delete me and click the Delete DB cluster button.\nOnce all databases have been deleted you can continue to the next step and delete the global cluster.\n4.12 Select hot-global and select Delete under Actions and then confirm deletion.\nCloudFormation Cleanup 5.1 Click CloudFormation to navigate to the dashboard in the Oregon (us-west-2) region.\n5.2 Select hot-secondary, then click the Delete button.\n5.3 Click the Delete stack button.\nYou must wait for the previous Database Cleanup to finish before moving on to the next step.\n5.4 Change the region to N. Virginia (us-east-1) using the Region Selector in the upper right corner.\n5.5 Select hot-primary, then click the Delete button.\n5.6 Click the Delete stack button.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://Anselm10.github.io/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

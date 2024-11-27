@@ -1,0 +1,456 @@
+[
+{
+	"uri": "http://Anselm10.github.io/vi/1-introduction/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Unishop là cửa hàng một điểm dừng cho mọi nhu cầu về Unicorn của bạn. Bạn có thể tìm thấy lựa chọn Unicorn tốt nhất trực tuyến tại Unishop và nhận Unicorn của bạn trong vòng chưa đầy 24 giờ!\nLà một công ty khởi nghiệp trẻ, Unishop đã xây dựng một dịch vụ tuyệt vời tập trung vào khách hàng và kết quả kinh doanh nhưng ít chú trọng vào công nghệ và kiến ​​trúc. Sau một vài năm thiết lập mô hình kinh doanh và đảm bảo vòng tài trợ vốn đầu tư mạo hiểm tiếp theo, doanh nghiệp đang tìm cách mở rộng sang các thị trường khác, chẳng hạn như Unicorn-Insurance, Unicorn-Banking và Unicorn-Ride-Sharing Giám đốc Công nghệ (CTO) đã yêu cầu bạn đảm bảo rằng kiến trúc hệ thống đủ khả năng phục hồi để khắc phục sau một thảm họa. Có một số chiến lược Phục hồi sau thảm họa (DR) có sẵn từ Amazon Web Services (AWS), đại diện cho các Mục tiêu Điểm Phục hồi (RPO) và Mục tiêu Thời gian Phục hồi (RTO) khác nhau.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/1-lab-prerequisites/at-an-aws-event/",
+	"title": "...tại một sự kiện AWS",
+	"tags": [],
+	"description": "",
+	"content": "Nếu bạn đang tham gia hội thảo này như một phần của hội thảo do giảng viên hướng dẫn, vui lòng đăng nhập vào hội thảo bằng cách sử dụngthis link và nhập mã hash được cung cấp cho bạn trong hội thảo.\nTất cả tài nguyên cho hội thảo này đã được cung cấp trước.\nTiếp tục đến phần Sao chép Dữ liệu Chéo Khu vực S3 của hội thảo.\nNếu bạn tự chạy hội thảo, hãy truy cập: Bắt đầu hội thảo trên tài khoản của bạn..\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/1-lab-prerequisites/at-an-aws-event/",
+	"title": "...tại một sự kiện AWS",
+	"tags": [],
+	"description": "",
+	"content": "Nếu bạn đang thực hiện workshop này trong một buổi học do giảng viên hướng dẫn, vui lòng đăng nhập vào workshop bằng liên kết này và nhập hash được cung cấp cho bạn trong buổi workshop.\nTất cả tài nguyên cho workshop này đã được cung cấp sẵn.\nTiếp tục tới phần Xác minh Website của workshop.\nNếu bạn đang tự thực hiện workshop, hãy truy cập: Bắt đầu workshop tự thực hiện..\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/1-lab-prerequisites/at-an-aws-event/",
+	"title": "...tại một sự kiện AWS",
+	"tags": [],
+	"description": "",
+	"content": "Nếu bạn đang thực hiện workshop này trong một buổi học do giảng viên hướng dẫn, vui lòng đăng nhập vào workshop bằng liên kết này và nhập hash được cung cấp cho bạn trong buổi workshop.\nTất cả tài nguyên cho workshop này đã được cung cấp sẵn.\nTiếp tục tới phần Xác minh Website của workshop.\nNếu bạn đang tự thực hiện workshop, hãy truy cập: Bắt đầu workshop tự thực hiện..\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/1-lab-prerequisites/at-an-aws-event/",
+	"title": "...tại một sự kiện AWS",
+	"tags": [],
+	"description": "",
+	"content": "Nếu bạn đang tham gia workshop này như một phần của workshop có giảng viên hướng dẫn, vui lòng đăng nhập vào workshop bằng liên kết nàyvà nhập mã băm được cung cấp trong workshop.\nTất cả tài nguyên cho workshop này đã được chuẩn bị sẵn.\nAll resources for this workshop have been pre-provisioned.\nTiếp tục đến phần DynamoDB của workshop.\nNếu bạn đang tự thực hiện workshop, hãy truy cập: Start the workshop on your own.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/4-failover/aurora/",
+	"title": "Aurora",
+	"tags": [],
+	"description": "",
+	"content": "Amazon Aurora Global Database được thiết kế cho các ứng dụng phân tán toàn cầu, cho phép một cơ sở dữ liệu Amazon Aurora duy nhất trải rộng qua nhiều khu vực AWS. Nó sao chép dữ liệu của bạn mà không ảnh hưởng đến hiệu suất cơ sở dữ liệu, cho phép đọc dữ liệu nhanh với độ trễ thấp tại mỗi khu vực và cung cấp khả năng khôi phục thảm họa khi xảy ra sự cố trên toàn khu vực. Trong các tình huống khôi phục thảm họa, bạn có thể nâng cấp khu vực phụ để đảm nhận toàn bộ trách nhiệm đọc-ghi trong vòng chưa đầy một phút.\nVới cơ sở dữ liệu Aurora toàn cầu, có hai phương pháp khác nhau để chuyển đổi dự phòng tùy thuộc vào tình huống.\nFailover – Sử dụng phương pháp này để khôi phục từ sự cố ngoài dự kiến. Với phương pháp này, bạn thực hiện chuyển đổi dự phòng giữa các khu vực sang một trong các cụm DB phụ trong cơ sở dữ liệu Aurora toàn cầu của bạn. RPO (Recovery Point Objective) cho phương pháp này thường có giá trị khác không tính bằng giây. Mức độ mất dữ liệu phụ thuộc vào độ trễ sao chép của cơ sở dữ liệu Aurora toàn cầu giữa các khu vực AWS tại thời điểm xảy ra sự cố. Để tìm hiểu thêm, hãy xem Recovering an Amazon Aurora global database from an unplanned outage.\nSwitchover – Phương pháp này trước đây được gọi là \u0026ldquo;quản lý chuyển đổi dự phòng có kế hoạch\u0026rdquo;. Sử dụng phương pháp này cho các tình huống có kiểm soát, chẳng hạn như bảo trì hoạt động và các thủ tục vận hành có kế hoạch khác. Vì tính năng này đồng bộ các cụm DB phụ với cụm chính trước khi thực hiện bất kỳ thay đổi nào khác, RPO là 0 (không mất dữ liệu). Để tìm hiểu thêm, hãy xem Performing switchovers for Amazon Aurora global databases.\nSwitchover, được trình bày trong Module 3: Warm Standby.\nrong buổi hướng dẫn này, chúng ta sẽ thực hiện Failover.\nNâng cấp Aurora 1.1 Nhấp vào RDS ể điều hướng đến bảng điều khiển ở khu vực Oregon (us-west-2).\n1.2 Nhìn vào pilot-global Global database. Lưu ý rằng bạn có pilot-primary là Cụm chính ở us-east-1, nơi có Writer instance và pilot-secondary là Cụm phụ ở us-west-2, nơi có Reader instance.\n****\n1.3 Chọn cụm pilot-global và chọn Switch over or fail over global database từ menu Actions.\n1.4 Chọn Failover (cho phép mất dữ liệu), chọn pilot-secondary làm Cụm chính mới, nhập \u0026ldquo;confirm\u0026rdquo; để xác nhận việc chuyển đổi dự phòng và nhấp vào Confirm.\nBạn sẽ cần đợi cho đến khi cơ sở dữ liệu được nâng cấp thành công trước khi tiếp tục bước tiếp theo. Điều này có thể mất vài phút.\n1.5 Khi việc chuyển đổi dự phòng hoàn tất, hãy lưu ý sự thay đổi. Cụm chính giờ đây đã ở us-west-2, nơi có Writer instance, và Cụm phụ giờ đây đã ở us-east-1, nơi có Reader instance.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/3-failover/aurora/",
+	"title": "Aurora",
+	"tags": [],
+	"description": "",
+	"content": "Amazon Aurora Global Database được thiết kế cho các ứng dụng phân tán toàn cầu, cho phép một cơ sở dữ liệu Amazon Aurora duy nhất trải rộng qua nhiều khu vực AWS. Nó sao chép dữ liệu của bạn mà không ảnh hưởng đến hiệu suất cơ sở dữ liệu, cho phép đọc dữ liệu nhanh với độ trễ thấp tại mỗi khu vực và cung cấp khả năng khôi phục thảm họa khi xảy ra sự cố trên toàn khu vực. Trong các tình huống khôi phục thảm họa, bạn có thể nâng cấp khu vực phụ để đảm nhận toàn bộ trách nhiệm đọc-ghi trong vòng chưa đầy một phút.\nVới cơ sở dữ liệu Aurora toàn cầu, có hai phương pháp khác nhau để chuyển đổi dự phòng tùy thuộc vào tình huống.\nFailover – Sử dụng phương pháp này để khôi phục từ sự cố ngoài dự kiến. Với phương pháp này, bạn thực hiện chuyển đổi dự phòng giữa các khu vực sang một trong các cụm DB phụ trong cơ sở dữ liệu Aurora toàn cầu của bạn. RPO (Recovery Point Objective) cho phương pháp này thường có giá trị khác không tính bằng giây. Mức độ mất dữ liệu phụ thuộc vào độ trễ sao chép của cơ sở dữ liệu Aurora toàn cầu giữa các khu vực AWS tại thời điểm xảy ra sự cố. Để tìm hiểu thêm, hãy xem Recovering an Amazon Aurora global database from an unplanned outage.\nSwitchover – Phương pháp này trước đây được gọi là \u0026ldquo;quản lý chuyển đổi dự phòng có kế hoạch\u0026rdquo;. Sử dụng phương pháp này cho các tình huống có kiểm soát, chẳng hạn như bảo trì hoạt động và các thủ tục vận hành có kế hoạch khác. Vì tính năng này đồng bộ các cụm DB phụ với cụm chính trước khi thực hiện bất kỳ thay đổi nào khác, RPO là 0 (không mất dữ liệu). Để tìm hiểu thêm, hãy xem Performing switchovers for Amazon Aurora global databases.\nTrong một kịch bản thảm họa thực sự, bạn sẽ sử dụng Failover, được minh họa trong Module 2: Pilot Light.\nTrong buổi hướng dẫn này, chúng ta sẽ thực hiện một Switchover.\nThăng cấp Aurora 1.1 Nhấp vào RDS ể điều hướng đến bảng điều khiển trong khu vực Oregon (us-west-2).\n1.2 Xem cấu trúc warm-global của cơ sở dữ liệu toàn cầu. Bạn sẽ nhận thấy rằng chúng ta có một Primary cluster ở us-east-1 với instance Writer và một Secondary cluster ở us-west-2 với instance Reader.\n1.3 Chọn warm-global cluster và chọn Switch over or fail over global database từ Actions.\nBạn sẽ muốn sử dụng khu vực phục hồi để bắt đầu quá trình switchover.\n1.4 Chọn Switchover, chọn warm-secondary làm New primary cluster, sau đó nhấp vào nút Confirm.\nBạn sẽ cần đợi để cơ sở dữ liệu switchover hoàn thành trước khi tiếp tục sang bước tiếp theo. Điều này có thể mất vài phút\n1.5 Quan sát sự thay đổi. Primary cluster bây giờ là ở us-west-2 với instance Writer và Secondary Cluster hiện là ở us-east-1 với instance Reader.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/1-lab-prerequisites/",
+	"title": "Các yêu cầu trước khi bắt đầu Lab",
+	"tags": [],
+	"description": "",
+	"content": "Để bắt đầu phòng thí nghiệm, hãy làm theo một trong các liên kết sau tùy thuộc vào việc bạn đang\u0026hellip;\nSử dụng tài khoản do giảng viên cung cấp tại hội thảo trực tuyến hoặc trực tiếp\nChạy trong tài khoản do AWS cung cấp ((sử dụng các mã hash do AWS cung cấp)) Sử dụng tài khoản AWS của riêng bạn\nChạy hội thảo trong tài khoản của bạn Sau khi hoàn thành một trong các bước thiết lập ở trên, tiếp tục với S3 Cross-Region Replication.\nHội thảo này mất khoảng 60 phút để hoàn thành.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/1-lab-prerequisites/",
+	"title": "Các yêu cầu trước khi bắt đầu Lab",
+	"tags": [],
+	"description": "",
+	"content": "Để bắt đầu thực hành, hãy theo dõi một trong các liên kết sau tùy theo việc bạn:\nSử dụng tài khoản được cung cấp bởi giảng viên tại workshop trực tuyến hoặc trực tiếp\nChạy trong tài khoản AWS được cung cấp (sử dụng hash do AWS cung cấp) Sử dụng tài khoản AWS của riêng bạn\nChạy workshop trong tài khoản của bạn Sau khi hoàn thành một trong các bước cài đặt trên, hãy tiếp tục với Xác minh Website.\nWorkshop này mất khoảng 60 phút để hoàn thành.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/1-lab-prerequisites/",
+	"title": "Các yêu cầu trước khi bắt đầu Lab",
+	"tags": [],
+	"description": "",
+	"content": "Để bắt đầu thực hành, hãy theo dõi một trong các liên kết sau tùy theo việc bạn:\nSử dụng tài khoản được cung cấp bởi giảng viên tại workshop trực tuyến hoặc trực tiếp\nChạy trong tài khoản AWS được cung cấp (sử dụng hash do AWS cung cấp) Sử dụng tài khoản AWS của riêng bạn\nChạy workshop trong tài khoản của bạn Sau khi hoàn thành một trong các bước cài đặt trên, hãy tiếp tục với Xác minh Website.\nWorkshop này mất khoảng 60 phút để hoàn thành.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/1-lab-prerequisites/",
+	"title": "Các yêu cầu trước khi bắt đầu Lab",
+	"tags": [],
+	"description": "",
+	"content": "To start the lab, follow one of the following links: depending on whether you are\u0026hellip;\nSử dụng tài khoản được cung cấp bởi giảng viên tại workshop trực tuyến hoặc trực tiếp\nChạy trên tài khoản do AWS cung cấp (sử dụng mã băm AWS được cung cấp) Sử dụng tài khoản AWS của riêng bạn\nChạy workshop trên tài khoản của riêng bạn Sau khi hoàn thành một trong các bước thiết lập ở trên, tiếp tục với DynamoDB.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/1-introduction/agenda/",
+	"title": "Chương trình",
+	"tags": [],
+	"description": "",
+	"content": "Các mô-đun này được chia thành các chiến lược Phục hồi sau thảm họa (DR) của AWS. Tất cả các mô-đun đều sử dụng ứng dụng Unishop và mỗi mô-đun sẽ làm nổi bật chiến lược AWS và các dịch vụ AWS có những tính năng giúp dễ dàng triển khai kế hoạch phục hồi sau thảm họa.\nMô-đun 1: Sao lưu và Khôi phục. Sao lưu và khôi phục là một phương pháp phù hợp để giảm thiểu rủi ro mất mát hoặc hỏng dữ liệu. Phương pháp này cũng có thể được sử dụng để giảm thiểu rủi ro thảm họa khu vực bằng cách sao chép dữ liệu sang các Khu vực (Region) khác của AWS, hoặc để giảm thiểu sự thiếu sót về độ dự phòng cho các khối lượng công việc triển khai trong một Vùng sẵn sàng (Availability Zone). Ngoài dữ liệu, bạn cũng phải triển khai lại hạ tầng, cấu hình và mã ứng dụng trong Khu vực khôi phục. Để hạ tầng có thể được triển khai lại nhanh chóng mà không gặp lỗi, bạn nên luôn triển khai bằng cách sử dụng hạ tầng dưới dạng mã (Infrastructure as Code - IaC) thông qua các dịch vụ như AWS CloudFormation hoặc AWS Cloud Development Kit (CDK). Nếu không sử dụng IaC, việc khôi phục các khối lượng công việc trong Khu vực khôi phục có thể phức tạp, dẫn đến thời gian phục hồi tăng lên và có thể vượt quá RTO của bạn. Ngoài dữ liệu người dùng, hãy đảm bảo sao lưu mã và cấu hình, bao gồm cả các Hình ảnh Máy Ảo Amazon (AMI) mà bạn sử dụng để tạo các phiên bản Amazon EC2. Bạn có thể sử dụng AWS CodePipeline để tự động triển khai lại mã ứng dụng và cấu hình.\nMô-đun 2: Chế độ Pilot Light. Với phương pháp Pilot Light, bạn sao chép dữ liệu từ một Khu vực sang Khu vực khác và cung cấp một bản sao của hạ tầng khối lượng công việc cốt lõi. Các tài nguyên cần thiết để hỗ trợ sao chép dữ liệu và sao lưu, chẳng hạn như cơ sở dữ liệu và lưu trữ đối tượng, luôn hoạt động. Các yếu tố khác, chẳng hạn như máy chủ ứng dụng, được nạp mã ứng dụng và cấu hình nhưng được \u0026ldquo;tắt\u0026rdquo; và chỉ được sử dụng trong quá trình thử nghiệm hoặc khi kích hoạt phục hồi thảm họa. Trong môi trường đám mây, bạn có sự linh hoạt để giảm tài nguyên khi không cần và triển khai lại khi cần. Thực hành tốt nhất cho \u0026ldquo;tắt\u0026rdquo; là không triển khai tài nguyên, mà tạo cấu hình và khả năng triển khai nó (\u0026ldquo;bật\u0026rdquo;) khi cần. Không giống như phương pháp sao lưu và khôi phục, hạ tầng cốt lõi của bạn luôn sẵn sàng và bạn có tùy chọn nhanh chóng triển khai môi trường sản xuất quy mô lớn bằng cách bật và mở rộng các máy chủ ứng dụng.\nMô-đun 3: Chế độ Warm Standby. Phương pháp Warm Standby liên quan đến việc đảm bảo rằng có một bản sao giảm quy mô nhưng hoàn toàn chức năng của môi trường sản xuất của bạn ở một Khu vực khác. Phương pháp này mở rộng khái niệm Pilot Light và giảm thời gian phục hồi vì khối lượng công việc của bạn luôn hoạt động ở một Khu vực khác. Phương pháp này cũng cho phép bạn dễ dàng thực hiện kiểm thử hoặc triển khai kiểm thử liên tục để tăng cường sự tự tin trong khả năng phục hồi sau thảm họa.\nMô-đun 4: Chế độ Hot Standby. Bạn có thể chạy khối lượng công việc của mình đồng thời ở nhiều Khu vực như một phần của chiến lược đa vị trí chủ động/chủ động hoặc chế độ dự phòng chủ động/bị động. Hot standby sử dụng cấu hình chủ động/bị động, trong đó người dùng chỉ được điều hướng đến một khu vực duy nhất và các khu vực DR không xử lý lưu lượng. Hầu hết các khách hàng thấy rằng nếu họ thiết lập toàn bộ môi trường ở Khu vực thứ hai, sẽ hợp lý hơn nếu sử dụng cấu hình chủ động/chủ động.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/3-prepare-secondary-region/ec2/",
+	"title": "EC2",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Amazon Machine Image (AMI) EC2 1.1 Nhấp vào EC2 để điều hướng đến bảng điều khiển ở khu vực N. Virginia (us-east-1).\n1.2 Chọn pilot-primary. Nhấp vào Create image dưới menu Actions -\u0026gt; Images and Templates.\n1.3 Nhập pilotAMI làm Image name, sau đó nhấp vào nút Create Image.\nSao chép Amazon Machine Image (AMI) EC2 2.1 Nhấp vào AMIsđể điều hướng đến bảng điều khiển.\nBạn sẽ cần chờ đợi cho đến khi trạng thái AMI là Available trước khi tiếp tục bước tiếp theo. Điều này có thể mất vài phút.\n2.2 Chọn pilotAMI. Nhấp vào Copy AMI dưới menu Actions.\n2.3 Chọn US West (Oregon) làm Destination Region.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/",
+	"title": "Kế hoạch phục hồi sau thảm họa",
+	"tags": [],
+	"description": "",
+	"content": "Kế hoạch phục hồi sau thảm họa (Disaster Recovery Plan - DR) Bài thực hành phục hồi sau thảm họa Giới thiệu Sao lưu và Khôi phục Chế độ Pilot Light Chế độ Warm Standby Chế độ Hot Standby "
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/1-lab-prerequisites/on-your-own/primary-region/",
+	"title": "Khu vực Chính",
+	"tags": [],
+	"description": "",
+	"content": "Triển khai Mẫu Amazon CloudFormation 1. Triển khai Cấu hình Mạng Chỉ hoàn thành phần này nếu bạn chưa triển khai Cấu hình Mạng như một phần của workshop phục hồi sau thảm họa khác. Tất cả các workshop phục hồi sau thảm họa sử dụng chung một stack Cấu hình Mạng và chỉ cần được triển khai một lần. Nếu bạn đã triển khai Cấu hình Mạng trong một workshop khác, bạn có thể chuyển sang phần 2. Triển khai Ứng dụng.\n1.1 Tạo cơ sở hạ tầng mạng ở vùng chính N. Virginia (us-east-1) bằng cách khởi chạy Mẫu CloudFormation Template .\n1.2 Xác minh tên stack CloudFormation network-stack . Nhấn nút Next.\n1.3 Nhấn nút Next.\n1.4 Nhấn nút Submit.\n2. Triển khai Ứng dụng 2.1 Tạo ứng dụng ở vùng chính N. Virginia (us-east-1) bằng cách khởi chạy CloudFormation Template .\n2.2 Xác minh tên stack CloudFormation hot-primary .\nĐể giá trị mặc định cho isPrimary\nĐể giá trị mặc định cho LatestAmiId\nĐể giá trị mặc định cho NetworkStackName, trừ khi bạn đã thay đổi nó trong bước trước\nNhấn nút Next.\n2.3 Giữ nguyên tất cả các tùy chọn mặc định và nhấn nút Next.\n2.4 Cuộn xuống cuối trang, bật hộp kiểm I acknowledge that AWS CloudFormation might create IAM resources with custom names, sau đó nhấn nút Submit. Bạn sẽ cần đợi stack Hot Standby Primary Region có trạng thái Completed trước khi chuyển sang bước tiếp theo. Thời gian hoàn thành sẽ mất khoảng 15 phút\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/5-failover/simulation-of-the-regional-service-event/",
+	"title": "Mô phỏng Sự kiện Dịch vụ Khu vực",
+	"tags": [],
+	"description": "",
+	"content": "Mô phỏng sự kiện dịch vụ khu vực Bạn sẽ mô phỏng một sự kiện dịch vụ khu vực ảnh hưởng đến trang web Unishop tại N. Virginia (us-east-1). Bạn sẽ thực hiện điều này bằng cách chặn quyền truy cập công khai vào bucket S3 đang lưu trữ trang web, làm cho trang web Unishop trở nên không khả dụng.\n1.1 Nhấp vào S3 để điều hướng đến bảng điều khiển.\n1.2 Nhấp vào liên kết backupandrestore-primary-uibucket-xxxx.\n1.3 Nhấp vào liên kết Permissions. Trong phần Block public access (bucket settings), nhấp vào nút Edit.\n1.4 Bật ô Block all public access, sau đó nhấp vào nút Save changes.\n1.5 Nhập confirm , và sau đó nhấp vào nút Confirm.\n1.6 Nhấp vào liên kết Properties. Trong phần Static website hosting. Nhấp vào liên kết Bucket website endpoint.\n1.7 Bạn sẽ nhận được lỗi 403 Forbidden.\nNếu bạn không nhận được lỗi 403 Forbidden, điều này có thể do bộ nhớ cache. Vui lòng thử làm mới trang hoặc mở trang web trong một trình duyệt khác hoặc chế độ ẩn danh để xem lỗi.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/4-prepare-secondary-region/backup/",
+	"title": "Sao lưu",
+	"tags": [],
+	"description": "",
+	"content": "Bạn sẽ Sao lưu các tài nguyên trong khu vực chính của bạn N. Virginia (us-east-1).\nSao lưu máy chủ EC2 1.1 Nhấp vào AWS Backup để điều hướng đến bảng điều khiển trong khu vực N. Virginia (us-east-1).\n1.2 Nhấp vào liên kết Protected resources, sau đó nhấp vào nút Create an on-demand backup.\n1.3 Chọn EC2 làm loại tài nguyên, sau đó chọn backupandrestore-primary làm Instance ID. Vui lòng thiết lập IAM role là WSParticipant. Nhấp vào nút Create on-demand backup.\nNếu bạn thực hiện trong tài khoản của riêng mình Nếu bạn thực hiện bài lab này trong tài khoản của riêng mình, bạn sẽ không có WSParticipant được cấu hình sẵn. Thay vào đó, bạn sẽ sử dụng một IAM role khác.\nVui lòng thiết lập IAM role là Default Role.\nBạn cũng có thể cần cập nhật quyền cho IAM role của mình. Vui lòng làm theo các bước từ phần IAM Permissions Fix bên dưới, nếu bạn gặp lỗi.\n1.4 Điều này sẽ tạo ra một Backup job.\nSao lưu cơ sở dữ liệu RDS 2.1 Nhấp vào liên kết Protected resources, sau đó nhấp vào nút Create an on-demand backup.\nrds-1\n2.2 Chọn RDS làm Resource type, sau đó chọn backupandrestore-primary làm Database name. Nhấp vào nút Create on-demand backup.\n2.3 Điều này sẽ tạo ra một Backup job.\nCác bản sao lưu cũng có thể bảo vệ chống lại sự hỏng hóc hoặc xóa dữ liệu do nhầm lẫn.\nBạn sẽ thấy hai công việc sao lưu của mình.\nKhi mỗi công việc chuyển sang trạng thái Completed, bạn có thể chuyển sang phần Copy. Điều này có thể mất vài phút. Copy. This may take several minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/1-lab-prerequisites/on-your-own/s3-access/",
+	"title": "Truy cập S3",
+	"tags": [],
+	"description": "",
+	"content": "Cho phép Truy cập Công khai Amazon S3 Ứng dụng của bạn sử dụng dịch vụ lưu trữ trang web tĩnh AWS Simple Storage Service (S3). Để ứng dụng có thể truy cập được cho người dùng Internet, bạn cần vô hiệu hóa chính sách tài khoản AWS chặn truy cập công khai.\n1.1 Nhấp vào S3 để chuyển đến bảng điều khiển.\n1.2 Nhấp vào Block Public Access settings for this account.\n1.3 Nếu bạn thấy tùy chọn Block all public access đang On, nhấp vào nút Edit để chuyển sang màn hình tiếp theo..\n1.4 Bỏ chọn Block all public access, bao gồm bất kỳ tùy chọn con nào. Nhấp vào nút Save changes.\n1.5 Nhập confirm rồi nhấp vào nút Confirm.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/1-lab-prerequisites/on-your-own/s3-access/",
+	"title": "Truy cập S3",
+	"tags": [],
+	"description": "",
+	"content": "Cho phép truy cập công khai Amazon S3 Ứng dụng của bạn sử dụng dịch vụ AWS Simple Storage Service (S3) để lưu trữ website tĩnh. Để làm cho ứng dụng có thể truy cập được từ người dùng Internet, bạn phải tắt chính sách chặn truy cập công khai của tài khoản AWS.\n1.1 Nhấp vào S3 để điều hướng đến bảng điều khiển.\n1.2 Nhấp vào Block Public Access settings for this account.\n1.3 Nếu bạn thấy Block all public access đang ở trạng thái On, nhấp vào nút Edit để chuyển sang màn hình tiếp theo.\n1.4 Bỏ chọn Block all public access, bao gồm tất cả các lựa chọn con. Sau đó nhấp vào nút Save changes.\n1.5 Nhập confirm rồi nhấp vào nút Confirm.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/1-lab-prerequisites/on-your-own/s3-access/",
+	"title": "Truy cập S3",
+	"tags": [],
+	"description": "",
+	"content": "Cho phép truy cập công khai Amazon S3 Ứng dụng của bạn sử dụng dịch vụ AWS Simple Storage Service (S3) để lưu trữ website tĩnh. Để làm cho ứng dụng có thể truy cập được từ người dùng Internet, bạn phải tắt chính sách chặn truy cập công khai của tài khoản AWS.\n1.1 Nhấp vào S3 để điều hướng đến bảng điều khiển.\n1.2 Nhấp vào Block Public Access settings for this account.\n1.3 Nếu bạn thấy Block all public access đang ở trạng thái On, nhấp vào nút Edit để chuyển sang màn hình tiếp theo.\n1.4 Bỏ chọn Block all public access, bao gồm tất cả các lựa chọn con. Sau đó nhấp vào nút Save changes.\n1.5 Nhập confirm rồi nhấp vào nút Confirm.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/2-s3-cross-region-replication/s3-buckets-validation/",
+	"title": "Xác minh các Bucket S3",
+	"tags": [],
+	"description": "",
+	"content": "Xác minh các Bucket S3 Là một phần của Mẫu CloudFormation, các bucket Amazon S3 ở khu vực chính và khu vực phụ đã được tạo ra.\n1.1 Nhấp vào Amazon S3 để điều hướng đến bảng điều khiển..\n1.2 Hai bucket S3 bắt đầu bằng backupandrestore Lưu ý các khu vực của hai bucket S3.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/1-lab-prerequisites/on-your-own/",
+	"title": "...tự thực hiện",
+	"tags": [],
+	"description": "",
+	"content": "\rChỉ hoàn thành phần này nếu bạn tự thực hiện hội thảo. Nếu bạn đang tham gia hội thảo tại một sự kiện do AWS tổ chức (chẳng hạn như re , AWS Summit, Immersion Day, hoặc bất kỳ sự kiện nào khác do nhân viên AWS tổ chức), hãy truy cập: Tiếp tục đến phần Sao chép Dữ liệu Chéo Khu vực S3 của hội thảo.\nSử dụng tài khoản AWS của riêng bạn Nếu bạn đang sử dụng tài khoản AWS cá nhân, hãy lưu ý rằng bạn sẽ phải chịu chi phí cho các tài nguyên được triển khai trong hội thảo này. Sau khi hoàn thành hội thảo, nhớ hoàn thành phần Dọn dẹp để xóa các tài nguyên AWS không cần thiết.\nTruy cập S3 Khu vực chính Khu vực phụ "
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/1-lab-prerequisites/on-your-own/",
+	"title": "...tự thực hiện",
+	"tags": [],
+	"description": "",
+	"content": "\rChỉ hoàn thành phần này nếu bạn đang tự thực hiện workshop. Nếu bạn đang thực hiện workshop tại một sự kiện do AWS tổ chức (như re , AWS Summit, Immersion Day, hoặc bất kỳ sự kiện nào do nhân viên AWS tổ chức), hãy đi tới: Tiếp tục đến phần Xác minh Website của workshop.\nSử dụng tài khoản AWS của riêng bạn Nếu bạn sử dụng tài khoản AWS cá nhân, hãy lưu ý rằng bạn sẽ phải chịu chi phí cho các tài nguyên được triển khai trong workshop này. Sau khi hoàn thành workshop, nhớ hoàn thành phần Cleanup để xóa các tài nguyên AWS không cần thiết.\nTruy cập S3 Khu vực chính Khu vực phụ "
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/1-lab-prerequisites/on-your-own/",
+	"title": "...tự thực hiện",
+	"tags": [],
+	"description": "",
+	"content": "\rChỉ hoàn thành phần này nếu bạn đang tự thực hiện workshop. Nếu bạn đang thực hiện workshop tại một sự kiện do AWS tổ chức (như re , AWS Summit, Immersion Day, hoặc bất kỳ sự kiện nào do nhân viên AWS tổ chức), hãy đi tới: Tiếp tục đến phần Xác minh Website của workshop.\nSử dụng tài khoản AWS của riêng bạn Nếu bạn sử dụng tài khoản AWS cá nhân, hãy lưu ý rằng bạn sẽ phải chịu chi phí cho các tài nguyên được triển khai trong workshop này. Sau khi hoàn thành workshop, nhớ hoàn thành phần Cleanup để xóa các tài nguyên AWS không cần thiết.\nTruy cập S3 Khu vực chính Khu vực phụ "
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/1-lab-prerequisites/on-your-own/",
+	"title": "...tự thực hiện",
+	"tags": [],
+	"description": "",
+	"content": "\rChỉ hoàn thành phần này nếu bạn tự thực hiện workshop. Nếu bạn đang tham gia workshop tại một sự kiện do AWS tổ chức (như re:Invent, AWS Summit, Immersion Day, hoặc bất kỳ sự kiện nào khác do nhân viên AWS tổ chức), hãy chuyển đến: Tiếp tục đến phần DynamoDB của workshop.\nSử dụng tài khoản AWS của riêng bạn Nếu bạn đang sử dụng tài khoản AWS cá nhân, lưu ý rằng bạn sẽ phải chịu chi phí cho các tài nguyên được triển khai trong workshop này. Sau khi hoàn thành workshop, hãy nhớ thực hiện phần Dọn dẹp để xóa các tài nguyên AWS không cần thiết. This workshop takes about 90 minutes to complete.\nVùng chính (Primary Region) Vùng thứ cấp (Secondary Region) "
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/4-prepare-secondary-region/copy/",
+	"title": "Copy",
+	"tags": [],
+	"description": "",
+	"content": "Bạn sẽ sao chép các tài nguyên đến khu vực thứ hai của bạn Oregon (us-west-2).\nSao chép bản sao lưu EC2 1.1 Nhấp vào liên kết Backup Vaults, sau đó nhấp vào liên kết Default.\n1.2 Trong phần Recovery Points, chọn sao lưu EC2. Nhấp vào Copy dưới menu Actions.\nNếu bạn không thấy bản sao lưu của mình, hãy kiểm tra trạng thái của Backup Job. Nhấp vào liên kết Jobs, sau đó nhấp vào liên kết Backup jobs. Xác minh rằng Status của bản sao lưu EC2 là Completed.\n1.3 Chọn US West (Oregon) làm Copy to destination, sau đó chọn Choose an IAM Role và chọn Team Role làm Role name. Nhấp vào nút Copy.\n1.4 Điều này sẽ tạo ra một Copy job.\nSao chép Sao lưu RDS 2.1 Nhấp vào liên kết Backup Vaults, sau đó nhấp vào liên kết Default\n2.2 Trong phần Recovery Points, chọn sao lưu RDS. Nhấp vào Copy dưới menu Actions.\nNếu bạn không thấy bản sao lưu của mình, hãy kiểm tra trạng thái của Backup Job. Nhấp vào liên kết Jobs, sau đó nhấp vào liên kết Backup jobs. Xác minh rằng Status của bản sao lưu RDS là Completed\n2.3 Chọn US West (Oregon) làm Copy to destination, sau đó chọn Choose an IAM Role và chọn Team Role làm Role name. Nhấp vào nút Copy.\n2.4 Điều này sẽ tạo ra một Copy job.\nBạn sẽ thấy hai công việc sao chép của mình.\nKhi mỗi công việc chuyển sang trạng thái Completed, bạn có thể chuyển sang phần Failover. Điều này có thể mất vài phút.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/4-failover/ec2/",
+	"title": "EC2",
+	"tags": [],
+	"description": "",
+	"content": "Khởi chạy EC2 1.1 Nhấp vào AMIs để điều hướng đến bảng điều khiển ở khu vực Oregon (us-west-2).\nBạn sẽ cần đợi cho đến khi pilotAMI có trạng thái là Available trước khi tiếp tục bước tiếp theo. Điều này có thể mất vài phút.\n1.2 Chọn pilotAMI. Nhấp vào nút Launch instance from AMI.\n1.3 Nhập pilot-secondary vào trường Name.\n1.4 Trong phần Key pair (login), chọn Proceed without a key pair (not recommended) làm Key pair name.\n1.5 Trong phần Network settings, nhấp vào nút Edit.\n1.6 Chọn VPC không phải là VPC mặc định. Chọn Select existing security group cho Firewall (security groups) và sau đó chọn network-stack-WebServerSecurityGroup-xxx làm Common security groups.\n1.7 Mở rộng phần Advanced details. Chọn pilot-secondary-S3InstanceProfile-xxx làm IAM instance profile.\n1.8 Bạn sẽ muốn cấu hình bootstrap cho phiên bản để có các cấu hình cần thiết để ứng dụng Unishop ở khu vực Oregon (us-west-2) có thể kết nối với cơ sở dữ liệu primary writer mới ở khu vực Oregon (us-west-2). Bạn sử dụng user data để thực hiện điều này.\nSao chép và dán script dưới đây vào trường User data, sau đó nhấp vào nút Launch instance.\nUser Data Script: #!/bin/bash sudo su ec2-user export AWS_DEFAULT_REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python -c \u0026#34;import json,sys; print json.loads(sys.stdin.read())[\u0026#39;region\u0026#39;]\u0026#34;) export DATABASE=$(aws rds describe-db-clusters --region $AWS_DEFAULT_REGION --db-cluster-identifier pilot-secondary --query \u0026#39;DBClusters[*].[Endpoint]\u0026#39; --output text) sudo bash -c \u0026#34;cat \u0026gt;/home/ec2-user/unishopcfg.sh\u0026#34; \u0026lt;\u0026lt;EOF #!/bin/bash export DB_ENDPOINT=$DATABASE EOF sudo systemctl restart unishop Bạn sẽ cần đợi cho đến khi phiên bản được khởi chạy thành công. Bạn có thể nhấp vào nút View all instances để điều hướng đến bảng điều khiển EC2. Xác minh rằng pilot-secondary có trạng thái Running. Điều này có thể mất vài phút.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/3-failover/ec2/",
+	"title": "EC2",
+	"tags": [],
+	"description": "",
+	"content": "Cập nhật Cấu hình Khởi chạy và Nhóm Tự động Mở rộng (ASG) 1.1 Nhấp vào CloudFormation Stacks để điều hướng đến bảng điều khiển trong khu vực Oregon (us-west-2).\n1.2 Chọn stack warm-secondary và nhấp vào Update.\n1.3 Chọn Use current template và nhấp Next để tiếp tục.\n1.4 Cập nhật tham số IsPromote thành yes và nhấp Next để tiếp tục.\n1.5 Cuộn xuống cuối trang, đánh dấu ô để xác nhận việc tạo vai trò IAM, sau đó nhấp vào Update stack.\nNhóm Tự động Mở rộng (ASG) Các thay đổi sau đây đã được thực hiện khi bạn cập nhật mẫu CloudFormation của mình:\nCấu hình khởi chạy đã được sửa đổi để kết nối ứng dụng của bạn với Aurora cluster vừa được thăng cấp. Auto Scaling Groups đã được sửa đổi để mở rộng khả năng EC2 từ 1 instance lên 2 instance để phù hợp với công suất EC2 của khu vực chính N. Virginia (us-east-1). Bây giờ chúng ta có thể tự tin rằng khi thực hiện failover, khu vực phụ Oregon (us-west-2) của chúng ta có thể xử lý lưu lượng yêu cầu ở mức độ sản xuất.\n2.1 Nhấp vào Auto Scaling Groups để điều hướng đến bảng điều khiển trong khu vực Oregon (us-west-2).\n2.2 Nhấp vào liên kết warm-secondary-WebServerGroup-xxx.\n2.3 Nhấp vào liên kết Activity, sau đó cuộn xuống phần Activity History. Bạn sẽ thấy một instance mới được khởi tạo đáp ứng với việc cập nhật Nhóm Tự động Mở rộng.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/5-failover/application-recovery/",
+	"title": "Khôi phục ứng dụng",
+	"tags": [],
+	"description": "",
+	"content": "Khôi phục Cơ sở dữ liệu RDS Phiên bản RDS đã được khôi phục về khu vực Oregon (us-west-2) do hạn chế về thời gian. Vui lòng xem RDS Restore để biết các bước khôi phục RDS của AWS Backup.\nKhởi động EC2 1.1 Nhấp vào AWS Backup để điều hướng đến bảng điều khiển trong khu vực Oregon (us-west-2).\n1.2 Nhấp vào liên kết Backup Vaults, sau đó nhấp vào liên kết Default.\n1.3 Trong phần Recovery Points, chọn bản sao lưu EC2. Nhấp vào Restore trong menu Actions.\nNếu bạn không thấy bản sao lưu của mình, hãy kiểm tra trạng thái của Copy Job. Nhấp vào AWS Backup để điều hướng đến bảng điều khiển trong khu vực N. Virginia (us-east-1). Nhấp vào liên kết Jobs, sau đó nhấp vào liên kết Copy jobs . Xác minh rằng Status của công việc sao chép EC2 của bạn là Completed.\n1.4 Trong phần Network settings, chọn VPC KHÔNG phải là VPC mặc định và chọn network-stack-WebServerSecurityGroup-xxxx làm Security groups, đồng thời bỏ chọn defaut\n****\n1.5 Trong phần Restore Role, chọn Choose an IAM Role và chọn WSParticipantRole làm Role name\n1.6 Bạn sẽ muốn khởi động phiên bản để có các cấu hình cần thiết cho ứng dụng Unishop trong khu vực Oregon (us-west-2). Bạn sử dụng user data để đạt được điều này.\nMở rộng phần Advanced settings và sao chép dán đoạn mã bên dưới làm User data, sau đó nhấp vào nút Restore backup.\nMã Dữ liệu Người dùng: #!/bin/bash sudo su ec2-user export AWS_DEFAULT_REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python -c \u0026#34;import json,sys; print json.loads(sys.stdin.read())[\u0026#39;region\u0026#39;]\u0026#34;) export DATABASE=$(aws rds describe-db-instances --region $AWS_DEFAULT_REGION --db-instance-identifier backupandrestore-secondary --query \u0026#39;DBInstances[*].[Endpoint.Address]\u0026#39; --output text) sudo bash -c \u0026#34;cat \u0026gt;/home/ec2-user/unishopcfg.sh\u0026#34; \u0026lt;\u0026lt;EOF #!/bin/bash export DB_ENDPOINT=$DATABASE EOF sudo systemctl restart unishop Bạn sẽ cần đợi cho công việc khôi phục có trạng thái là Completed trước khi tiếp tục bước tiếp theo. Điều này có thể mất vài phút\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/1-lab-prerequisites/on-your-own/primary-region/",
+	"title": "Khu vực Chính",
+	"tags": [],
+	"description": "",
+	"content": "Triển khai các Mẫu Amazon CloudFormation 1. Triển khai Cấu hình Mạng Chỉ hoàn thành phần này nếu bạn chưa triển khai Cấu hình Mạng như một phần của hội thảo phục hồi sau thảm họa khác. Tất cả các hội thảo phục hồi sau thảm họa chia sẻ cùng một ngăn xếp Cấu hình Mạng và chỉ cần triển khai một lần. Nếu bạn đã triển khai Cấu hình Mạng như một phần của hội thảo khác, bạn có thể chuyển sang phần 2. Triển khai Ứng dụng.\n1.1 Tạo Cơ sở hạ tầng Mạng trong khu vực chính N. Virginia (us-east-1) bằng cách khởi chạy CloudFormation Template này .\n1.2 Xác thực tên ngăn xếp CloudFormation network-stack Nhấp vào nút Next.\n1.3 Nhấp vào nút Next .\n1.4 Nhấp vào nút Submit.\n2. Triển khai Ứng dụng 2.1 Tạo ứng dụng trong khu vực chính N. Virginia (us-east-1) bằng cách khởi chạy CloudFormation Template.\n2.2 Xác thực tên ngăn xếp CloudFormation backupandrestore-primary. Để giá trị của LatestAmiId mặc định\nĐể giá trị của NetworkStackName mặc định, trừ khi bạn đã thay đổi nó ở bước\nNhấp vào nút Next.\n2.3 Để tất cả các lựa chọn mặc định và nhấp vào nút Next.\n2.4 Cuộn xuống cuối trang và enable ô kiểm I acknowledge that AWS CloudFormation might create IAM resources with custom names, au đó nhấp vào nút Submit.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/1-lab-prerequisites/on-your-own/primary-region/",
+	"title": "Khu vực Chính",
+	"tags": [],
+	"description": "",
+	"content": "Triển khai Mẫu Amazon CloudFormation 1. Triển khai Cấu hình Mạng Chỉ hoàn thành phần này nếu bạn chưa triển khai Cấu hình Mạng như một phần của workshop khôi phục thảm họa khác. Tất cả các workshop khôi phục thảm họa đều chia sẻ cùng một cấu hình mạng và chỉ cần được triển khai một lần. Nếu bạn đã triển khai Cấu hình Mạng như một phần của workshop khác, bạn có thể chuyển sang phần 2. Triển khai Ứng dụng.\n1.1 Tạo cơ sở hạ tầng mạng trong vùng chính N. Virginia (us-east-1) bằng cách khởi chạy CloudFormation Template này.\n1.2 Xác nhận tên CloudFormation stack là network-stack Nhấp vào nút Next.\n1.3 Nhấp vào nút Next.\n1.4 Nhấp vào nút Submit.\n2. Triển khai Ứng dụng 2.1 Tạo ứng dụng trong vùng chính N. Virginia (us-east-1) bằng cách khởi chạy CloudFormation Template .\n2.2 Xác nhận tên CloudFormation stack là pilot-primary.\rGiữ nguyên các giá trị mặc định cho isPrimary.\nGiữ nguyên các giá trị mặc định cho LatestAmiId.\nGiữ nguyên các giá trị mặc định cho NetworkStackName, trừ khi bạn đã thay đổi trong bước trước.\nNhấp vào nút Next.\n2.3 Giữ nguyên tất cả các tùy chọn mặc định và nhấp vào nút Next.\n2.4 Cuộn xuống cuối trang, enable hộp kiểm I acknowledge that AWS CloudFormation might create IAM resources with custom names, sau đó nhấp vào nút Submit.\nBạn sẽ cần đợi cho đến khi stack Pilot Light Primary Region có trạng thái Completed trước khi tiếp tục bước tiếp theo. Quá trình này sẽ mất khoảng 15 phút.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/1-lab-prerequisites/on-your-own/primary-region/",
+	"title": "Khu vực Chính",
+	"tags": [],
+	"description": "",
+	"content": "Triển khai Mẫu Amazon CloudFormation 1. Triển khai Cấu hình Mạng Chỉ hoàn thành phần này nếu bạn chưa triển khai Cấu hình Mạng như một phần của workshop khôi phục thảm họa khác. Tất cả các workshop khôi phục thảm họa đều chia sẻ cùng một cấu hình mạng và chỉ cần được triển khai một lần. Nếu bạn đã triển khai Cấu hình Mạng như một phần của workshop khác, bạn có thể chuyển sang phần 2. Triển khai Ứng dụng.\n1.1 Tạo cơ sở hạ tầng mạng trong vùng chính N. Virginia (us-east-1) bằng cách khởi chạy CloudFormation Template này.\n1.2 Xác nhận tên CloudFormation stack là network-stack Nhấp vào nút Next.\n1.3 Nhấp vào nút Next.\n1.4 Nhấp vào nút Submit.\n2. Triển khai Ứng dụng 2.1 Tạo ứng dụng trong vùng chính N. Virginia (us-east-1) bằng cách khởi chạy CloudFormation Template .\n2.2 Xác nhận tên CloudFormation stack là warm-primary Giữ giá trị mặc định cho isPrimary\nGiữ giá trị mặc định cho isPromote\nGiữ giá trị mặc định cho LatestAmiId\nGiữ giá trị mặc định cho NetworkStackName, trừ khi bạn đã thay đổi nó ở bước trước\nNhấp vào nút Next.\n2.3 Giữ nguyên tất cả các tùy chọn mặc định và nhấp vào nút Next.\n2.4 Cuộn xuống cuối trang, enable hộp kiểm I acknowledge that AWS CloudFormation might create IAM resources with custom names, sau đó nhấp vào nút Submit.\nBạn sẽ cần đợi cho đến khi stack Warm Standby Primary Region có trạng thái Completed trước khi tiếp tục bước tiếp theo. Quá trình này sẽ mất khoảng 15 phút.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/1-lab-prerequisites/on-your-own/secondary-region/",
+	"title": "Khu vực Phụ",
+	"tags": [],
+	"description": "",
+	"content": "Triển khai Mẫu Amazon CloudFormation 1. Triển khai Cấu hình Mạng Chỉ hoàn thành phần này nếu bạn chưa triển khai Cấu hình Mạng như một phần của workshop phục hồi sau thảm họa khác. Tất cả các workshop phục hồi sau thảm họa sử dụng chung một stack Cấu hình Mạng và chỉ cần được triển khai một lần. Nếu bạn đã triển khai Cấu hình Mạng trong một workshop khác, bạn có thể chuyển sang phần 2. Triển khai Ứng dụng.\n1.1 Tạo cơ sở hạ tầng mạng ở vùng phụ Oregon (us-west-2) bằng cách khởi chạy Mẫu CloudFormation Template .\n1.2 Xác minh tên stack CloudFormation network-stack . Nhấn nút Next.\n1.3 Nhấn nút Next.\n1.4 Nhấn nút Submit.\n2. Triển khai Ứng dụng 2.1 Tạo ứng dụng ở vùng chính N. Virginia (us-east-1) bằng cách khởi chạy CloudFormation Template .\n2.2 Xác minh tên stack CloudFormation hot-primary .\nThay đổi isPrimary thành no.\nĐể giá trị mặc định cho LatestAmiId\nĐể giá trị mặc định cho NetworkStackName, trừ khi bạn đã thay đổi nó trong bước trước\nNhấn nút Next.\n2.3 Giữ nguyên tất cả các tùy chọn mặc định và nhấn nút Next.\n2.4 Cuộn xuống cuối trang, bật hộp kiểm I acknowledge that AWS CloudFormation might create IAM resources with custom names, sau đó nhấn nút Submit.\nBạn sẽ cần đợi stack Hot Standby Secondary Region có trạng thái Completed trước khi chuyển sang bước tiếp theo. Thời gian hoàn thành sẽ mất khoảng 15 phút\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/2-s3-cross-region-replication/",
+	"title": "Sao chép giữa các vùng S3",
+	"tags": [],
+	"description": "",
+	"content": "Trong phòng thí nghiệm này, chúng ta sẽ cấu hình việc sao chép cho các Bucket Amazon S3 được triển khai trong khu vực chính N. Virginia (us-east-1) đến Oregon (us-west-2) - khu vực phụ của bạn.\nBạn sẽ thực hiện các bước cần thiết để tạo vai trò IAM cần thiết, cấu hình và xác thực việc sao chép Amazon S3.\nXác thực Bucket S3 Vai trò IAM Cấu hình Sao chép S3 "
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/",
+	"title": "Sao lưu và Khôi phục",
+	"tags": [],
+	"description": "",
+	"content": "Trong mô-đun này, bạn sẽ tìm hiểu về chiến lược phục hồi sau thảm họa bằng cách Sao lưu và Khôi phục. Để tìm hiểu thêm về chiến lược này, bạn có thể xem lại bài viết Blog về Phục hồi sau thảm họa .\nChiến lược phục hồi sau thảm họa bằng cách Sao lưu và Khôi phục có Mục tiêu Điểm Phục hồi (RPO) / Mục tiêu Thời gian Phục hồi (RTO) trong khoảng vài giờ. Đối với chiến lược sao lưu và khôi phục, tại khu vực thứ hai, tất cả dữ liệu, cơ sở hạ tầng và dịch vụ cần phải được cung cấp.\nỨng dụng của bạn hiện đang được triển khai trong khu vực chính N. Virginia (us-east-1). Oregon (us-west-2) sẽ là khu vực thứ hai của bạn.\nỨng dụng thử nghiệm của bạn là Unishop. Đây là một ứng dụng Spring Boot Java được triển khai trên một Amazon Elastic Compute Cloud (EC2) duy nhất sử dụng mạng con công khai. Cơ sở dữ liệu của bạn là cơ sở dữ liệu MySQL trên Amazon RDS với giao diện phía trước viết bằng bootstrap và được lưu trữ trong Amazon Simple Storage Service (S3) .\nMô-đun này sử dụng AWS Backup công cụ giúp bạn sao lưu, sao chép và khôi phục phiên bản Amazon EC2 và cơ sở dữ liệu Amazon RDS của bạn tới khu vực thứ hai.\nBạn sẽ sử dụng Amazon S3 Cross-Region Replication (CRR) để sao chép các đối tượng S3 của mình sang khu vực thứ hai.\nCloudFormation sẽ được sử dụng để cấu hình hạ tầng và triển khai ứng dụng. Cung cấp hạ tầng của bạn bằng phương pháp hạ tầng dưới dạng mã (IaC) là một phương pháp tốt nhất. CloudFormation là một cách dễ dàng để tăng tốc việc cung cấp đám mây bằng cách sử dụng hạ tầng dưới dạng mã.\nKinh nghiệm trước đây với Bảng điều khiển AWS và dòng lệnh Linux sẽ hữu ích nhưng không bắt buộc.\nVì khối lượng công việc này chỉ có một phiên bản EC2 được triển khai trong một Vùng sẵn sàng, nên kiến trúc này không đáp ứng các phương pháp tốt nhất của Khung Kiến trúc AWS dành cho việc chạy các ứng dụng sản xuất có tính sẵn sàng cao, nhưng đủ cho hội thảo này.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/2-s3-cross-region-replication/iam-role/",
+	"title": "vai trò IAM",
+	"tags": [],
+	"description": "",
+	"content": "Tạo vai trò IAM cho việc Sao chép S3 Bạn cần tạo một vai trò IAM có quyền truy cập để thực hiện các chức năng sao chép Amazon S3.\n1.1 Nhấp vào IAM để điều hướng đến bảng điều khiển Vai trò IAM.\n1.2 Nhấp vào nút Create Role. 1.3 Chọn AWS service và dưới Use case chọn S3 trong cả hai trường, sau đó nhấp vào nút Next.\n1.4 Tìm kiếm: AmazonS3FullAccess trong Permissions policies và chọn làm Policy Name, sau đó nhấp vào nút Next.\n1.5 Nhập S3ReplicationRole làm Role name, sau đó cuộn xuống và nhấp vào nút Create role.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/2-verify-website/",
+	"title": "Verify Website",
+	"tags": [],
+	"description": "",
+	"content": "Primary Region 1.1 Nhấp vào CloudFormation Stacks để điều hướng đến bảng điều khiển ở khu vực N. Virginia (us-east-1).\n1.2 Chọn stack pilot-primary.\n1.3 Nhấp vào liên kết Outputs.\n1.4 Nhấp vào liên kết WebsiteURL trong phần output và mở trong tab hoặc cửa sổ trình duyệt mới.\nĐăng ký 2.1 Đăng ký vào ứng dụng bằng cách sử dụng liên kết Signup trên menu trên cùng. Bạn cần cung cấp một địa chỉ e-mail, không cần phải hợp lệ, nhưng hãy chắc chắn rằng bạn nhớ nó vì bạn sẽ cần để xác minh việc sao chép dữ liệu sau này.\n2.2 Bạn sẽ thấy thông báo xác nhận nói rằng Successfully Signed Up. You may now Login.\n2.3 Đăng nhập vào ứng dụng bằng cách sử dụng liên kết Login trên menu trên cùng, sử dụng địa chỉ e-mail từ bước trước. Lưu ý cách website đang được lưu trữ từ khu vực chính N. Virginia (us-east-1).\n2.4 Thêm các mục vào giỏ hàng của bạn, xác minh rằng số lượng trong giỏ hàng của bạn đang được tăng lên.\nKhu vực Thứ cấp Khu vực thứ cấp của bạn sẽ không khả dụng. Trong chiến lược khôi phục thảm họa pilot light, không có các instance tính toán.\n3.1 Nhấp vào CloudFormation Stacks tđể điều hướng đến bảng điều khiển ở khu vực Oregon (us-west-2). 3.2 Chọn stack pilot-secondary.\n3.3 Nhấp vào liên kết Outputs.\n3.4 Nhấp vào liên kết WebsiteURL trong phần output và mở trong tab hoặc cửa sổ trình duyệt mới.\n3.5 Bạn sẽ thấy một trang lỗi 404.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/2-verify-website/",
+	"title": "Xác minh Website",
+	"tags": [],
+	"description": "",
+	"content": "Khu vực chính (Primary Region) 1.1 Nhấp vào CloudFormation Stacks để điều hướng đến bảng điều khiển ở khu vực N. Virginia (us-east-1).\n1.2 Chọn stack warm-primary.\n1.3 Nhấp vào liên kết Outputs.\n1.4 Nhấp vào liên kết WebsiteURL trong phần outputs và mở nó trong một tab hoặc cửa sổ trình duyệt mới.\nĐăng ký (Signup) 2.1 Đăng ký vào ứng dụng bằng cách sử dụng liên kết Signup trong menu trên cùng. Bạn cần cung cấp một địa chỉ email, không cần phải là địa chỉ email hợp lệ. Tuy nhiên, hãy nhớ địa chỉ email này vì bạn sẽ cần nó để xác minh quá trình sao chép dữ liệu sau này.\n2.2 Bạn sẽ thấy một thông báo xác nhận nói rằng Successfully Signed Up. You may now Login.\n2.3 Đăng nhập vào ứng dụng bằng cách sử dụng liên kết Login trong menu trên cùng, sử dụng địa chỉ email của bạn từ bước trước. Cũng chú ý rằng website đang được lưu trữ từ khu vực chính của bạn N. Virginia (us-east-1).\n2.4 Thêm các mục vào giỏ hàng của bạn, xác nhận rằng số lượng mặt hàng trong giỏ hàng ở phía trên trang đang tăng lên.\n###Khu vực phụ (Secondary Region) Bạn sẽ tận dụng tính năng write forwarding của bản sao đọc Amazon Aurora. Với tính năng này, các thao tác ghi có thể được gửi đến một bản sao đọc ở khu vực phụ và sẽ được chuyển tiếp mượt mà đến máy chủ ghi trong khu vực chính qua một kênh giao tiếp bảo mật. Việc kích hoạt tính năng chuyển tiếp ghi ở khu vực phụ là một thực tiễn tốt khi áp dụng chiến lược phục hồi thảm họa Warm Standby trong thử nghiệm.\n3.1 Nhấp vào CloudFormation Stacks để điều hướng đến bảng điều khiển ở khu vực Oregon (us-west-2).\n3.2 Chọn stack warm-secondary.\n3.3 Nhấp vào liên kết Outputs.\n3.4 Nhấp vào liên kết WebsiteURL trong phần outputs và mở nó trong một tab hoặc cửa sổ trình duyệt mới.\n3.5 Đăng nhập vào ứng dụng bằng cách sử dụng liên kết Login trong menu trên cùng, sử dụng địa chỉ email của bạn từ Bước 2.1 ở trên.\n3.6 Bạn sẽ thấy cùng một số mục trong giỏ hàng mà bạn đã thêm ở Bước 2.4 trên. Cũng chú ý rằng website đang được lưu trữ từ khu vực phụ của bạn Oregon (us-west-2).\n3.7 Thêm các mục bổ sung vào giỏ hàng của bạn và xem tổng số mặt hàng trong giỏ hàng được hiển thị ở phía trên trang.\n3.8 Quay lại website của khu vực chính. Nếu bạn đã mở sẵn, nhấp vào Cart trong thanh menu, nếu không hãy làm theo các bước trên trong phần Khu vực chính để đăng nhập lại. Bạn sẽ thấy tổng giỏ hàng tăng lên trên website khu vực chính N. Virginia (us-east-1).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/2-s3-cross-region-replication/configure-s3-replication/",
+	"title": "Cấu hình sao chép S3",
+	"tags": [],
+	"description": "",
+	"content": "Tạo quy tắc Sao chép 1.1 Nhấp vào liên kết cho backupandrestore-primary-uibucket-xxxx.\n1.2 Nhấp vào liên kết Management. Trong phần Replication rule, nhấp vào nút Create replication rule.\n1.3 Nhập PrimaryToSecondary như là Replication rule name và chọn Apply to all objects in the bucket.\n1.4 Chọn Choose a bucket in this account và sau đó chọn backupandrestore-secondary-uibucket-xxxx làm Bucket name. Chọn S3ReplicationRole làm IAM role.\n1.5 Trong phần Additional replication options bật checkbox Replication Time Control (RTC), sau đó nhấp vào nút Save.\n1.6 Buckets của bạn (gần như) rỗng và bạn không muốn sao chép các đối tượng hiện có, nhấp vào nút Submit.\nNhân bản bucket S3 Bạn sẽ thủ công sao chép các đối tượng vào backupandrestore-primary-uibucket-xxxx trong primary region của bạn để có thể quan sát sự nhân bản vào bucket backupandrestore-secondary-uibucket-xxxx trong secondary region của bạn. Trong môi trường sản xuất, bạn sẽ tự động hóa các bước này như một phần của quy trình CI/CD của bạn.\n2.1 Nhấp vào AWS Cloudshell để truy cập vào bảng điều khiển trong vùng N. Virginia (us-east-1).\n2.2 Nếu bạn chưa bao giờ sử dụng CloudShell, bạn sẽ nhận được thông báo Welcome to AWS CloudShell. Đánh dấu Do not show again và nhấp vào nút Close.\n2.3 Khi bạn thấy dấu nhắc, hãy dán lệnh AWS CLI sau vào đó.\nBạn sẽ nhận được thông báo Safe Paste for multiline text, nhấp vào nút Paste .\nexport S3_BUCKET=$(aws s3api list-buckets --region us-east-1 --output text --query 'Buckets[?starts_with(Name, `backupandrestore-primary-uibucket`) == `true`]'.Name)\ncurl https://ws-assets-prod-iad-r-iad-ed304a55c2ca1aee.s3.us-east-1.amazonaws.com/6b7a41c6-3cae-45f2-bf2c-72c64b55d920/UniShopUI.zip --output UniShopUI.zip\nunzip UniShopUI.zip -d UniShopUI/ aws s3 cp UniShopUI/UniShopUI/ s3://$S3_BUCKET/ --exclude \u0026quot;config.json\u0026quot; --recursive\nXác minh việc nhân bản 3.1 Nhấp vào Amazon S3 để quay lại bảng điều khiển.\n3.2 Nhấp vào liên kết cho backupandrestore-secondary-uibucket-xxxx.\n3.3 Bạn sẽ thấy các đối tượng đã được nhân bản.\nCó thể mất một vài phút để các đối tượng được nhân bản.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/",
+	"title": "Chế độ Pilot Light",
+	"tags": [],
+	"description": "",
+	"content": "Trong module này, bạn sẽ trải qua chiến lược khôi phục thảm họa Pilot Light. Để tìm hiểu thêm về chiến lược này, bạn có thể xem Disaster Recovery blog .\nPChiến lược khôi phục thảm họa Pilot Light có Recovery Point Objective(RPO) / Recovery Time Objective (RTO) trong vòng vài chục phút. Trong chiến lược này, ở vùng thứ cấp, dữ liệu vẫn hoạt động và cơ sở hạ tầng cốt lõi đã được cung cấp, nhưng các dịch vụ hoặc là ở trạng thái không hoạt động hoặc không có.\nỨng dụng của bạn hiện được triển khai ở vùng chính N. Virginia (us-east-1), và vùng thứ cấp của bạn sẽ là N. California (us-west-1).\nỨng dụng thử nghiệm của bạn là Unishop. Đây là một ứng dụng Java Spring Boot được triển khai trên một phiên bản Amazon Elastic Compute Cloud (EC2) đơn, sử dụng public subnet. Cơ sở dữ liệu của bạn là Amazon Aurora MySQL với giao diện được viết bằng Bootstrap và được lưu trữ trên Amazon Simple Storage Service (S3) .\nModule này sẽ tận dụng Amazon Machine Images (AMI) để khởi động phiên bản EC2 và Amazon Aurora Global Database ể sao chép dữ liệu từ cơ sở dữ liệu Amazon Aurora MySQL của bạn sang vùng thứ cấp.\nCloudFormation sẽ được sử dụng để cấu hình cơ sở hạ tầng và triển khai ứng dụng. Việc cung cấp cơ sở hạ tầng với phương pháp mã hóa cơ sở hạ tầng (IaC) là một phương pháp hay. CloudFormation giúp tăng tốc quá trình cung cấp dịch vụ đám mây với mã hóa cơ sở hạ tầng. Kinh nghiệm trước với AWS Console và dòng lệnh Linux sẽ hữu ích nhưng không bắt buộc.\nVì tải công việc này chỉ có một phiên bản EC2 được triển khai ở một vùng sẵn sàng, kiến trúc này không đáp ứng các thực tiễn tốt nhất của AWS Well-Architected Framework dành cho các ứng dụng sản xuất có tính khả dụng cao, nhưng đủ cho workshop này.\n****\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/3-prepare-secondary-region/",
+	"title": "Chuẩn bị khu vực Phụ",
+	"tags": [],
+	"description": "",
+	"content": "\rBạn sẽ tạo và sao chép thủ công một Amazon Machine Images (AMI) sang khu vực thứ cấp của bạn là Oregon (us-west-2).\nTrong môi trường sản xuất, bạn sẽ tự động hóa các bước này như một phần của quy trình CI/CD. Bạn muốn đảm bảo rằng khu vực chính và khu vực thứ cấp của bạn được cấu hình giống nhau và có cùng các artifact, để đảm bảo rằng nếu bạn cần chuyển đổi dự phòng sang khu vực thứ cấp, khối lượng công việc của bạn sẽ hoạt động như trong khu vực chính.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/3-failover/",
+	"title": "Chuyển đổi dự phòng",
+	"tags": [],
+	"description": "",
+	"content": "Khi một sự kiện dịch vụ khu vực ảnh hưởng đến ứng dụng Unishop trong khu vực chính N. Virginia (us-east-1), chúng ta sẽ chuyển sang khu vực phụ Oregon (us-west-2).\nChúng ta sẽ thực hiện thủ công một loạt các bước để chuyển tải khối lượng công việc của mình sang khu vực phụ Oregon (us-west-2). Trong môi trường sản xuất, chúng ta sẽ tự động hóa các tác vụ này như một phần của quy trình\nMô phỏng một sự kiện dịch vụ khu vực Bây giờ, bạn sẽ mô phỏng một sự kiện dịch vụ khu vực ảnh hưởng đến website Unishop trong N. Virginia (us-east-1). Bạn sẽ thực hiện điều này bằng cách chặn quyền truy cập công khai vào bucket S3 đang lưu trữ website, khiến website Unishop không thể truy cập được.\n1.1 Nhấp vào S3 để điều hướng đến bảng điều khiển.\n1.2 Nhấp vào liên kết warm-primary-uibucket-xxxx.\n1.3 Nhấp vào liên kết Permissions. Trong phần Block public access (bucket settings), nhấp vào nút Edit.\n1.4 Bật checkbox Block all public access, sau đó nhấp vào nút Save changes.\n1.5 Gõ confirm, sau đó nhấp vào nút Confirm.\n1.6 Nhấp vào liên kết Properties.\n1.7 Trong phần Static website hosting, nhấp vào liên kết Bucket website endpoint.\n1.8 Bạn sẽ nhận được lỗi 403 Forbidden.\nNếu bạn không nhận được lỗi 403 Forbidden, có thể là do bộ nhớ cache. Hãy thử làm mới trang hoặc mở website trong trình duyệt khác hoặc chế độ ẩn danh để xem lỗi\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/2-dynamodb/",
+	"title": "DynamoDB",
+	"tags": [],
+	"description": "",
+	"content": "Khi bạn tạo một bảng toàn cầu DynamoDB , nó bao gồm nhiều bảng sao (mỗi bảng ở một vùng AWS) mà DynamoDB xử lý như một đơn vị duy nhất. Mỗi bảng sao có cùng tên bảng và cùng sơ đồ khóa chính. Khi ứng dụng ghi dữ liệu vào một bảng sao ở một vùng AWS, DynamoDB tự động truyền ghi nhận đó tới các bảng sao khác ở các vùng AWS khác.\nCấu hình Bảng Toàn Cầu Amazon DynamoDB 1.1 Nhấp vào DynamoDB để điều hướng tới bảng điều khiển trong vùng N. Virginia (us-east-1).\n1.2 Nhấp vào liên kết Tables.\n1.3 Nhấp vào liên kết unishophotstandby.\n1.4 Nhấp vào liên kết Global Tables, sau đó nhấp vào nút Create replica.\n1.5 Chọn US West (Oregon) làm Available replication Regions, sau đó nhấp vào nút Create replica.\nChờ trạng thái hiển thị Active trước khi tiếp tục bước tiếp theo.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/1-lab-prerequisites/on-your-own/secondary-region/",
+	"title": "Khu vực Phụ",
+	"tags": [],
+	"description": "",
+	"content": "Triển khai các Mẫu Amazon CloudFormation 1. Triển khai Cấu hình Mạng Chỉ hoàn thành phần này nếu bạn chưa triển khai Cấu hình Mạng như một phần của hội thảo phục hồi sau thảm họa khác. Tất cả các hội thảo phục hồi sau thảm họa chia sẻ cùng một ngăn xếp Cấu hình Mạng và chỉ cần triển khai một lần. Nếu bạn đã triển khai Cấu hình Mạng như một phần của hội thảo khác, bạn có thể chuyển sang phần 2. Triển khai Ứng dụng.\n1.1 Tạo Cơ sở hạ tầng Mạng trong khu vực phụ Oregon (us-west-2) bằng cách khởi chạy CloudFormation Template .\n1.2 Xác thực tên ngăn xếp CloudFormation là network-stack. Nhấp vào nút Next.\n1.3 Nhấp vào nútNext. 1.4 Nhấp vào nút Submit.\n2. Triển khai Ứng dụng 2.1 Tạo ứng dụng trong khu vực phụ Oregon (us-west-2) bằng cách khởi chạy CloudFormation Template .\n2.2 Nhấp vào nútNext.\n2.3 Để tất cả các lựa chọn mặc định và nhấp vào nút Next.\n2.4 Cuộn xuống cuối trang và enable ô kiểm I acknowledge that AWS CloudFormation might create IAM resources with custom names, sau đó nhấp vào nút Create stack.\nYou will need to wait for the BackupAndRestore Primary Region stack to have a status of Completed before moving on to the next step. This will take approximately 15 minutes.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/1-lab-prerequisites/on-your-own/secondary-region-copy/",
+	"title": "Khu vực Phụ",
+	"tags": [],
+	"description": "",
+	"content": "Triển khai Mẫu Amazon CloudFormation 1. Triển khai Cấu hình Mạng Chỉ hoàn thành phần này nếu bạn chưa triển khai Cấu hình Mạng như một phần của workshop khôi phục thảm họa khác. Tất cả các workshop khôi phục thảm họa đều chia sẻ cùng một cấu hình mạng và chỉ cần được triển khai một lần. Nếu bạn đã triển khai Cấu hình Mạng như một phần của workshop khác, bạn có thể chuyển sang phần 2. Triển khai Ứng dụng.\n1.1 Tạo cơ sở hạ tầng mạng trong vùng phụ trợ Oregon (us-west-2) bằng cách khởi chạy CloudFormation Template .\n1.2 Xác nhận tên CloudFormation stack là network-stack. Nhấp vào nút Next button.\n1.3 Nhấp vào nút Next. 1.4 Nhấp vào nút Submit.\n2. Triển khai Ứng dụng 2.1 Tạo ứng dụng trong vùng phụ trợ Oregon (us-west-2) bằng cách khởi chạy CloudFormation Template .\nNhấp vào nút Next.\n2.2 Xác nhận tên CloudFormation stack là pilot-secondary Thay đổi isPrimary thành No.\nGiữ nguyên các giá trị mặc định cho LatestAmiId.\nGiữ nguyên các giá trị mặc định cho NetworkStackName, trừ khi bạn đã thay đổi trong bước trước.\nNhấp vào nút Next.\n2.3 Giữ nguyên tất cả các tùy chọn mặc định và nhấp vào nút Next.\n2.4 Cuộn xuống cuối trang, enable hộp kiểm I acknowledge that AWS CloudFormation might create IAM resources with custom names, sau đó nhấp vào nút Create stack.\nBạn sẽ cần đợi cho đến khi stack Pilot Light Secondary Region có trạng thái Completed trước khi tiếp tục bước tiếp theo. Quá trình này sẽ mất khoảng 15 phút\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/1-lab-prerequisites/on-your-own/secondary-region/",
+	"title": "Khu vực Phụ",
+	"tags": [],
+	"description": "",
+	"content": "Triển khai Mẫu Amazon CloudFormation 1. Triển khai Cấu hình Mạng Chỉ hoàn thành phần này nếu bạn chưa triển khai Cấu hình Mạng như một phần của workshop khôi phục thảm họa khác. Tất cả các workshop khôi phục thảm họa đều chia sẻ cùng một cấu hình mạng và chỉ cần được triển khai một lần. Nếu bạn đã triển khai Cấu hình Mạng như một phần của workshop khác, bạn có thể chuyển sang phần 2. Triển khai Ứng dụng.\n1.1 Tạo cơ sở hạ tầng mạng trong vùng phụ trợ Oregon (us-west-2) bằng cách khởi chạy CloudFormation Template .\n1.2 Xác nhận tên CloudFormation stack là network-stack. Nhấp vào nút Next button.\n1.3 Nhấp vào nút Next. 1.4 Nhấp vào nút Submit.\n2. Triển khai Ứng dụng 2.1 Tạo ứng dụng trong vùng phụ trợ Oregon (us-west-2) bằng cách khởi chạy CloudFormation Template .\nNhấp vào nút Next.\n2.2 Xác nhận tên CloudFormation stack là pilot-secondary Thay đổi isPrimary thành No.\nGiữ giá trị mặc định cho isPromote\nGiữ nguyên các giá trị mặc định cho LatestAmiId.\nGiữ nguyên các giá trị mặc định cho NetworkStackName, trừ khi bạn đã thay đổi trong bước trước.\nNhấp vào nút Next.\n2.3 Giữ nguyên tất cả các tùy chọn mặc định và nhấp vào nút Next.\n2.4 Cuộn xuống cuối trang, enable hộp kiểm I acknowledge that AWS CloudFormation might create IAM resources with custom names, sau đó nhấp vào nút Create stack.\nBạn sẽ cần đợi cho đến khi stack Pilot Light Secondary Region có trạng thái Completed trước khi tiếp tục bước tiếp theo. Quá trình này sẽ mất khoảng 15 phút\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/3-verify-primary-region/",
+	"title": "Xác minh Khu vực Chính",
+	"tags": [],
+	"description": "",
+	"content": "Xác minh Trang web Khu vực Chính Hãy xác minh rằng mọi thứ hoạt động như mong đợi trong khu vực chính của bạn N. Virginia (us-east-1).\n1.1 Nhấp vào CloudFormation Stacks để điều hướng đến bảng điều khiển trong khu vực N. Virginia (us-east-1).\n1.2 Chọn backupandrestore-primary dưới Stacks.\n1.3 Nhấp vào liên kết Outputs và mở trong một tab hoặc cửa sổ trình duyệt mới.\n1.4 Nhấp vào liên kết WebsiteURL. Bạn sẽ thấy The Unicorn Shop - us-east-1.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/3-verify-websites/",
+	"title": "Xác minh trang Web",
+	"tags": [],
+	"description": "",
+	"content": "Vùng Chính (Primary Region) 1.1 Nhấp vào CloudFormation Stacks để điều hướng đến bảng điều khiển ở vùng N. Virginia (us-east-1).\n1.2 Chọn stack hot-primary.\n1.3 Nhấp vào liên kết Outputs.\nprimary-region-1\n1.4 Sao chép giá trị WebsiteURL vào clipboard vì bạn sẽ cần nó trong phần CloudFront. Nhấp vào liên kết WebsiteURL và mở trong một tab hoặc cửa sổ trình duyệt mới. primary-region-2\nĐăng Ký (Signup) 2.1 Đăng ký tài khoản trong ứng dụng bằng cách nhấp vào liên kết Signup trong menu trên cùng. Bạn cần cung cấp một địa chỉ email, không cần phải hợp lệ. Tuy nhiên, hãy nhớ địa chỉ email này vì bạn sẽ cần sử dụng nó để kiểm tra sao chép dữ liệu sau này.\n2.2 Bạn sẽ thấy thông báo xác nhận Successfully Signed Up. You may now Login.\n2.3 Đăng nhập vào ứng dụng bằng liên kết Login trong menu trên cùng, sử dụng email của bạn từ bước trước. Lưu ý rằng trang web đang được lưu trữ từ vùng chính của bạn N. Virginia (us-east-1).\n****\n2.4 Thêm các sản phẩm vào giỏ hàng và xác minh rằng tổng số sản phẩm trong giỏ được hiển thị ở đầu trang đang tăng lên. Có thể mất vài giây để sản phẩm xuất hiện trong giỏ hàng của bạn.\rVùng Phụ (Secondary Region) Bạn đang tận dụng Amazon DynamoDB global tables . Một bảng toàn cầu là tập hợp của một hoặc nhiều bảng sao, tất cả thuộc về một tài khoản AWS duy nhất. Mỗi bảng sao lưu trữ cùng một tập dữ liệu.\n3.1 Nhấp vào CloudFormation Stacks ể điều hướng đến bảng điều khiển ở vùng Oregon (us-west-2).\n3.2 Chọn stack hot-secondary.\n3.3 Nhấp vào liên kết Outputs.\n3.4 Sao chép giá trị WebsiteURL vào clipboard vì bạn sẽ cần nó trong phần CloudFront. Nhấp vào liên kết WebsiteURL và mở trong một tab hoặc cửa sổ trình duyệt mới.\n3.5 Đăng nhập vào ứng dụng bằng liên kết Login trong menu trên cùng, sử dụng email từ Bước 2.1.\n3.6 Bạn sẽ thấy số lượng sản phẩm trong giỏ hàng giống như bạn đã thêm trong Bước 2.4. Có thể bạn cần nhấp vào Cart trên thanh menu để tải lại. Lưu ý rằng trang web đang được lưu trữ từ vùng phụ Oregon (us-west-2).\n3.7 Thêm thêm các sản phẩm vào giỏ hàng và kiểm tra tổng số sản phẩm được hiển thị ở đầu trang.\n3.8 Quay lại trang web của vùng chính và làm mới trình duyệt. Bạn sẽ thấy tổng số sản phẩm trong giỏ đã được cập nhật ở vùng chính N. Virginia (us-east-1).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/",
+	"title": "Chế độ Warm Standby",
+	"tags": [],
+	"description": "",
+	"content": "Trong module này, bạn sẽ tìm hiểu chiến lược khôi phục thảm họa Warm Standby. Để tìm hiểu thêm về chiến lược khôi phục thảm họa này, bạn có thể xem bài viết Disaster Recovery blog .\nChiến lược khôi phục thảm họa Warm Standby có các Mục tiêu Điểm Khôi phục (RPO) / Mục tiêu Thời gian Khôi phục (RTO)) trong vòng vài phút. Trong chiến lược Warm Standby, dữ liệu tại vùng thứ cấp luôn được cập nhật trực tiếp, cơ sở hạ tầng chính đã được triển khai, và các dịch vụ đang hoạt động với công suất giảm.\nỨng dụng của chúng ta hiện đang được triển khai tại vùng chính N. Virginia (us-east-1) và sẽ sử dụng Oregon (us-west-2) làm vùng thứ cấp.\nỨng dụng thử nghiệm của bạn là Unishop. Đây là một ứng dụng Java Spring Boot được triển khai sử dụng Elastic Load Balancing và hai phiên bản Amazon Elastic Compute Cloud (EC2) trong một subnet công khai. Kho dữ liệu là một cơ sở dữ liệu MySQ Amazon Aurora với giao diện được viết bằng Bootstrap và lưu trữ trên Amazon Simple Storage Service (S3) .\nModule này tận dụng Auto Scaling Groups (ASG) cho phép chúng ta mở rộng các phiên bản compute tại vùng thứ cấp trong quá trình chuyển đổi dự phòng. Amazon Aurora Global Database được sử dụng để sao chép dữ liệu MySQL của Amazon Aurora sang vùng thứ cấp. Chúng ta cũng sử dụng tính năng write forwarding của Amazon Aurora read replica. Với tính năng này, các yêu cầu ghi có thể được gửi đến một read replica trong vùng thứ cấp và sẽ được chuyển tiếp đến writer tại vùng chính qua kênh truyền thông bảo mật.\nCloudFormation sẽ được sử dụng để cấu hình cơ sở hạ tầng và triển khai ứng dụng. Việc triển khai cơ sở hạ tầng bằng phương pháp mã hóa cơ sở hạ tầng (IaC) là một thực hành tốt. CloudFormation là cách dễ dàng để đẩy nhanh quá trình triển khai cloud với IaC.\nKinh nghiệm trước đây với AWS Console và dòng lệnh Linux sẽ hữu ích nhưng không bắt buộc\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/4-prepare-secondary-region/",
+	"title": "Chuẩn bị Khu vực Phụ",
+	"tags": [],
+	"description": "",
+	"content": "AWS Backup là một cách để tập trung hóa và tự động hóa bảo vệ dữ liệu trên các dịch vụ AWS và khối lượng công việc lai. AWS Backup cung cấp một dịch vụ hoàn toàn quản lý, dựa trên chính sách với chi phí hiệu quả, giúp đơn giản hóa việc bảo vệ dữ liệu quy mô lớn. AWS Backup cũng giúp bạn tuân thủ các quy định pháp lý hoặc chính sách kinh doanh của mình về bảo vệ dữ liệu. Cùng với AWS Organizations, bạn có thể sử dụng AWS Backup để triển khai trung tâm các chính sách bảo vệ dữ liệu nhằm cấu hình, quản lý và giám sát hoạt động sao lưu của bạn trên các tài khoản và tài nguyên AWS của công ty.\nBạn có thể tìm thấy danh sách các tài nguyên được hỗ trợ bởi AWS Backup here .\nBạn sẽ thực hiện thủ công một loạt các tác vụ để sao lưu, sao chép và khôi phục ứng dụng của bạn trong khu vực thứ hai Oregon (us-west-2). bạn sẽ tự động hóa những bước này bằng cách tạo một backup plan để lên lịch sao lưu định kỳ nhằm đáp ứng chỉ tiêu RPO của bạn.\nNếu bạn đang sử dụng tài khoản AWS của riêng mình, bạn có thể muốn tạo một kho lưu trữ không mặc định cho workshop này. Điều này sẽ ngăn chặn việc trộn lẫn các bản sao lưu của workshop với các bản sao lưu khác trong kho lưu trữ mặc định. Hướng dẫn có thể được tìm thấy trong service documentation .\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/4-failover/",
+	"title": "Chuyển đổi dự phòng",
+	"tags": [],
+	"description": "",
+	"content": "Trong trường hợp một thảm họa ảnh hưởng đến khu vực chính N. Virginia (us-east-1), bạn muốn khởi động lại các tài nguyên ở khu vực thứ cấp Oregon (us-west-2).\nBạn sẽ thực hiện thủ công một loạt các tác vụ để chuyển đổi khối lượng công việc của bạn sang khu vực thứ cấp Oregon (us-west-2). Trong môi trường sản xuất, bạn sẽ tự động hóa các tác vụ này như một phần của quy trình chuyển đổi dự phòng.\nMô phỏng Sự kiện Dịch vụ Khu vực Bây giờ, bạn sẽ mô phỏng một sự kiện dịch vụ khu vực ảnh hưởng đến website Unishop ở N. Virginia (us-east-1). Bạn sẽ thực hiện điều này bằng cách chặn quyền truy cập công cộng vào S3 bucket đang lưu trữ website, khiến website Unishop không thể truy cập được.\n1.1 Nhấp vào S3 để điều hướng đến bảng điều khiển.\n1.2 Nhấp vào liên kếtpilot-primary-uibucket-xxxx.\n1.3 Nhấp vào liên kết Permissions. Trong phần Block public access (bucket settings), nhấp vào nút Edit.\n1.4 Kích hoạt hộp kiểm Block all public access, sau đó nhấp vào nút Save changes.\n1.5 Nhập confirm, sau đó nhấp vào nút Confirm.\n1.6 Nhấp vào liên kết Properties.\n1.7 Cuộn xuống phần Static website hosting. Nhấp vào liên kết Bucket website endpoint.\n1.8 Bạn sẽ nhận được lỗi 403 Forbidden.\nNếu bạn không nhận được lỗi 403 Forbidden, có thể là do bộ nhớ đệm. Vui lòng thử làm mới trang hoặc mở website trong một trình duyệt khác hoặc chế độ ẩn danh để thấy lỗi này.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/4-cloudfront/",
+	"title": "CloudFront",
+	"tags": [],
+	"description": "",
+	"content": "Bạn có thể cải thiện khả năng phục hồi và tăng cường tính khả dụng cho các tình huống cụ thể bằng cách thiết lập CloudFront với khả năng chuyển đổi nguồn (origin failover).\nTạo Phân phối Amazon CloudFront 1.1 Nhấp vào CloudFront để điều hướng đến bảng điều khiển.\n1.2 Nhấp vào nút Create a CloudFront Distribution.\n1.3 Chọn hot-primary-uibucket-xxx từ danh sách thả xuống cho giá trị Origin domain. Nhấp vào nút Use website endpoint vì bucket của chúng ta đang lưu trữ website tĩnh.\n1.4 Trong phần Cache key and origin requests, chọn CachingDisabled cho Cache Policy để vô hiệu hóa bộ nhớ đệm CloudFront.\nMột trong những mục đích khi sử dụng CloudFront là giảm số lượng yêu cầu mà máy chủ nguồn phải xử lý trực tiếp. Với việc bộ nhớ đệm CloudFront, nhiều đối tượng được phục vụ từ các vị trí edge gần người dùng của bạn, giúp giảm tải cho máy chủ nguồn và giảm độ trễ. Tuy nhiên, hành vi này có thể che giấu cơ chế của bạn (vô hiệu hóa bucket UI) không hoạt động đúng khi mô phỏng sự cố. Để biết thêm chi tiết, xem Amazon CloudFront Optimizing caching and availability . Trong môi trường sản xuất, khách hàng thường muốn sử dụng giá trị mặc định CachingOptimized.\n1.5 Trong phần Web Application Firewall (WAF), chọn Do not enable security protections.\nThực tiễn tốt nhất để bảo vệ ứng dụng của bạn khỏi các mối đe dọa và lỗ hổng bảo mật web phổ biến nhất khi sử dụng AWS WAF là chọn Enable security protections. Các yêu cầu bị chặn sẽ được ngừng trước khi chúng đến được các máy chủ web của bạn\n1.6 Nhấp vào nút Create Distribution.\nCấu hình Một Nguồn Cung Cấp Bổ Sung Bây giờ bạn sẽ thêm một Origin bổ sung và sử dụng hot-secondary-uibucket-xxxx.\n2.1 Click the Origins link, then click the Create origin button.\n2.2 Chọn hot-secondary-uibucket-xxx từ danh sách thả xuống cho giá trị Origin domain. Nhấp vào nút Use website endpoint vì bucket của chúng ta đang lưu trữ website tĩnh. Sau đó nhấp vào nút Create origin.\nCấu hình Nhóm Nguồn Cung Cấp 3.1 Nhấp vào nút Create Origin Group.\n3.2 Chọn hot-primary-uibucket-xxxx là Origins, sau đó nhấp vào nút Add. Chọn hot-secondary-uibucket-xxxx là Origins, sau đó nhấp vào nút Add. Nhập hot-standby-origin-group làm Name. Bật tất cả các hộp kiểm cho Failover criteria, sau đó nhấp vào nút Create origin group.\nCấu hình Hành Vi (Behaviors) 4.1 Nhấp vào liên kết Behaviors. Chọn Default (*), sau đó nhấp vào nút Edit.\n4.2 Chọn hot-standby-origin-group làm Origin and Origin Groups. Nhấp vào nút Save changes.\n4.3 Nhấp vào liên kết Distributions.\n4.4 Chờ cho Status hiển thị Enabled và Last Modified có ngày.\nXác Minh Phân Phối 5.1 Sao chép Domain Name của phân phối CloudFront vào cửa sổ trình duyệt mới.\n5.2 Xác minh rằng tiêu đề của website nói The Unicorn Shop - us-east-1. Đăng nhập vào ứng dụng bằng liên kết Login trong menu trên cùng và sử dụng email bạn đã dùng trước đó. Bạn sẽ thấy các sản phẩm trong giỏ hàng mà bạn đã thêm trước đó.\nMột trong những mục đích của việc sử dụng CloudFront là hỗ trợ HTTPS, trong khi lưu trữ website tĩnh trong S3 không hỗ trợ giao thức này. Bạn nên áp dụng các phương pháp tốt nhất khi lưu trữ một website tĩnh trên AWS, đó là sử dụng CloudFront. Để biết thêm chi tiết, xem Làm thế nào để sử dụng CloudFront phục vụ các yêu cầu HTTPS cho bucket Amazon S3 của tôi?. Để sử dụng HTTPS với tên miền tùy chỉnh, xem Cấu hình website tĩnh sử dụng tên miền tùy chỉnh đã đăng ký với Route 53..\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/4-verify-failover/",
+	"title": "Xác minh chuyển đổi dự phòng",
+	"tags": [],
+	"description": "",
+	"content": "Khu vực Phụ (Secondary Region) 1.1 Nhấp vào CloudFormation Stacks ể điều hướng đến bảng điều khiển trong khu vực Oregon (us-west-2).\n1.2 Chọn stack warm-secondary.\n1.3 Nhấp vào liên kết Outputs.\n1.4 Nhấp vào liên kết WebsiteURL và mở trong một tab hoặc cửa sổ trình duyệt mới.\nNếu bạn vẫn còn trang web mở từ bước trước, bạn sẽ cần phải Đăng xuất trước khi thực hiện các bước tiếp theo.\nXác minh Trang web 2.1Đăng nhập vào ứng dụng. Bạn cần cung cấp email đã đăng ký từ phần Yêu cầu trước \u0026gt; Khu vực Chính.\n2.2 Bạn sẽ thấy các mục trong giỏ hàng mà bạn đã thêm từ khu vực chính N. Virginia (us-east-1). Bạn có thể cần nhấp vào Cart trên thanh menu để ép trang tải lại.\nNếu bạn không thấy us-west-2, có thể do bộ nhớ cache. Hãy thử làm mới trang (sử dụng CTRL+F5).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/",
+	"title": "Chế độ Hot Standby",
+	"tags": [],
+	"description": "",
+	"content": "Trong module này, bạn sẽ tìm hiểu chiến lược khôi phục thảm họa Hot Standby. Để tìm hiểu thêm về chiến lược này, bạn có thể xem bài viết Disaster Recovery blog .\nChiến lược khôi phục thảm họa Hot Standby có Recovery Point Objective(RPO) / Recovery Time Objective (RTO) igần như theo thời gian thực. Trong chiến lược Hot Standby, dữ liệu tại vùng thứ cấp luôn được cập nhật trực tiếp, cơ sở hạ tầng chính đã được triển khai, và các dịch vụ đang hoạt động với công suất đầy đủ.\nỨng dụng của bạn hiện đang được triển khai tại vùng chính N. Virginia (us-east-1). Vùng Oregon (us-west-2) sẽ là vùng thứ cấp của bạn.\nYỨng dụng thử nghiệm của bạn là Unishop. Đây là một ứng dụng Spring Boot Java được triển khai trên một phiên bản Amazon Elastic Compute Cloud (EC2) trong một subnet công khai. Kho dữ liệu của bạn bao gồm một cơ sở dữ liệu MySQL Amazon Aurora lưu trữ dữ liệu người dùng. Ứng dụng thử nghiệm của bạn cũng được triển khai sử dụng Amazon API Gateway và AWS Lambda . Ngoài ra, bạn còn sử dụng Amazon DynamoDB để lưu trữ dữ liệu giỏ hàng. Giao diện được viết bằng Bootstrap và lưu trữ trên Amazon Simple Storage Service (S3) .\nỨng dụng thử nghiệm sử dụng hai kho dữ liệu, Amazon Aurora và Amazon DynamoDB, để minh họa các tính năng khôi phục thảm họa của mỗi dịch vụ. Bạn sử dụng Amazon DynamoDB để lưu trạng thái giỏ hàng và Amazon Aurora để lưu trữ danh mục sản phẩm. Khi thực hiện chuyển đổi dự phòng, bạn không cần phải nâng cấp read replica của cơ sở dữ liệu Amazon Aurora tại vùng phục hồi, vì bạn chỉ đọc danh mục sản phẩm. Điều này giúp giảm thời gian khôi phục vì không cần thao tác nâng cấp cơ sở dữ liệu. Trong trường hợp chuyển đổi dự phòng của Amazon DynamoDB, bạn đã cấu hình Global Tables cho phép nhiều điểm ghi, do đó không cần thực hiện hành động nào. Với các workload của mình, bạn có thể chọn kho dữ liệu phù hợp cho từng trường hợp sử dụng.\nModule này sử dụng Amazon CloudFront như một mạng phân phối nội dung (CDN). Bạn cũng sẽ tận dụng Amazon Aurora Global Database để sao chép dữ liệu Amazon Aurora MySQL sang vùng thứ cấp và Amazon DynamoDB Global Tables để sao chép dữ liệu DynamoDB của bạn sang vùng thứ cấp.\nCloudFormation sẽ được sử dụng để cấu hình cơ sở hạ tầng và triển khai ứng dụng. Việc triển khai cơ sở hạ tầng bằng phương pháp mã hóa cơ sở hạ tầng (IaC) là một thực hành tốt. CloudFormation là cách dễ dàng để đẩy nhanh quá trình triển khai cloud với IaC.\nKinh nghiệm trước đây với AWS Console và dòng lệnh Linux sẽ hữu ích nhưng không bắt buộc.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/5-failover/",
+	"title": "Chuyển đổi dự phòng",
+	"tags": [],
+	"description": "",
+	"content": "Trong trường hợp một thảm họa ảnh hưởng đến khu vực chính của bạn, N. Virginia (us-east-1), bạn muốn khôi phục các tài nguyên trong khu vực phuu Oregon (us-west-2).\nBạn sẽ thực hiện thủ công một loạt các tác vụ để chuyển đổi công việc của bạn sang khu vực thứ cấp Oregon (us-west-2). Trong môi trường sản xuất, bạn sẽ tự động hóa các tác vụ này như một phần của quy trình chuyển đổi\nMô phỏng sự kiện dịch vụ khu vực Khôi phục ứng dụng "
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/5-failover/",
+	"title": "Chuyển đổi dự phòng",
+	"tags": [],
+	"description": "",
+	"content": "Khi một sự kiện dịch vụ khu vực ảnh hưởng đến ứng dụng Unishop ở khu vực chính N. Virginia (us-east-1), chúng ta muốn chuyển sang khu vực phụ Oregon (us-west-2).\nChúng ta sẽ thực hiện thủ công một loạt các tác vụ để chuyển đổi tải (failover) công việc của mình sang khu vực phụ Oregon (us-west-2). Trong môi trường sản xuất, chúng ta sẽ** tự động hóa** các tác vụ này như một phần của quy trình chuyển đổi tải.\nMô phỏng một sự kiện dịch vụ khu vực Bây giờ, bạn sẽ mô phỏng một sự kiện dịch vụ khu vực ảnh hưởng đến website Unishop ở N. Virginia (us-east-1). Bạn sẽ đạt được điều này bằng cách chặn quyền truy cập công khai vào bucket S3 đang lưu trữ website, khiến website Unishop không thể truy cập được.\n1.1 Click S3 để truy cập vào bảng điều khiển.\n1.2 Click vào liên kết hot-primary-uibucket-xxxx.\n1.3 Click vào liên kết Permissions. Trong phần Block public access (bucket settings), click vào nút Edit.\n1.4 Bật checkbox Block all public access, sau đó click nút Save changes.\n1.5 Nhập confirm , và click nút Confirm.\n1.6 Click vào liên kết Properties.\n1.7 Trong phần Static website hosting, click vào liên kết Bucket website endpoint.\n1.8 Bạn sẽ nhận được lỗi 403 Forbidden.\nNếu bạn không nhận được lỗi 403 Forbidden, điều này có thể là do bộ nhớ đệm. Hãy thử làm mới trang hoặc mở website trong một trình duyệt khác hoặc chế độ ẩn danh để xem lỗi.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/4-warm-standby/5-clean-up/",
+	"title": "Dọn dẹp tài nguyên",
+	"tags": [],
+	"description": "",
+	"content": "\rNếu bạn đang thực hiện workshop này theo hình thức đào tạo có giảng viên hướng dẫn, bạn KHÔNG cần hoàn thành phần này.\nDọn dẹp Tài nguyên S3 1.1 Nhấp vào S3 để truy cập bảng điều khiển.\n1.2 Chọn warm-primary-uibucket-xxxx và nhấp vào Empty.\n1.3 Nhập permanently delete vào hộp xác nhận và nhấp vào Empty.\n1.4 Khi thấy thông báo xanh lá cây ở đầu màn hình cho biết bucket đã trống, nhấp vào Exit.\nVui lòng lặp lại các bước 1.1 đến 1.4 cho các bucket sau: warm-secondary-uibucket-xxxx\nDọn dẹp Cơ sở Dữ liệu Bước này bắt buộc vì bạn đã thực hiện chuyển đổi thủ công cho cơ sở dữ liệu Aurora.\n2.1 Nhấp vào RDS để truy cập bảng điều khiển tại vùng N. Virginia (us-east-1). 2.2 Chọn cơ sở dữ liệu unishop-warm trong cụm warm-primary, sau đó chọn Delete trong mục Actions.\n2.3 Bỏ chọn Create final snapshot, chọn I acknowledge\u0026hellip;, nhập \u0026ldquo;delete me\u0026rdquo; rồi nhấp vào nút Delete.\n2.4 Chọn cụm warm-primary, nhấp vào Remove from global database trong Actions, sau đó xác nhận chuyển đổi.\n2.5 Chọn cụm warm-primary và nhấp vào Delete trong Actions. (Bạn phải đợi cơ sở dữ liệu unishop-warm được xóa trước khi xóa cụm).\n2.6 Chọn No cho mục Create final snapshot, đánh dấu I acknowledge\u0026hellip;, sau đó nhấp vào Delete DB cluster.\nVui lòng lặp lại các bước 2.2 đến 2.4 cho cụm sau: (Bạn phải đợi cơ sở dữ liệu chính xóa xong trước khi thực hiện bước này) warm-secondary cluster\n2.7 Chọn warm-global, nhấp vào Delete trong Actions và xác nhận xóa.\nHãy đợi tất cả cơ sở dữ liệu và cụm được xóa hoàn toàn trước khi chuyển sang bước tiếp theo.\nDọn Dẹp Vùng Phụ CloudFormation 3.1 Nhấp vào CloudFormation để truy cập bảng điều khiển tại vùng Oregon (us-west-2).\n3.2 Chọn stack warm-secondary, sau đó nhấp vào nút Delete.\n****\n3.3 Nhấp vào nút Delete stack.\nHãy đợi quá trình xóa stack hoàn tất trước khi chuyển sang bước tiếp theo.\nDọn Dẹp Vùng Chính CloudFormation 4.1 Nhấp vào CloudFormation để truy cập bảng điều khiển tại vùng N. Virginia (us-east-1).\n4.2 Chọn stack warm-primary, sau đó nhấp vào nút Delete.\n3.3 Nhấp vào nút Delete stack.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/5-verify-failover/",
+	"title": "Xác minh chuyển đổi dự phòng",
+	"tags": [],
+	"description": "",
+	"content": "Khu Vực Phụ (Secondary Region) 1.1 Nhấp vào CloudFormation Stacks để điều hướng đến bảng điều khiển ở khu vực Oregon (us-west-2).\n1.2 Chọn stack pilot-secondary.\n1.3 Nhấp vào liên kết Outputs.\n1.4 Nhấp vào liên kết WebsiteURL và mở nó trong một tab hoặc cửa sổ trình duyệt mới.\nNếu bạn không thấy trang web Unishop với tất cả các sản phẩm, có thể phiên bản EC2 chưa hoàn thành việc chạy các script bootstrapping. Tiếp tục làm mới trang cho đến khi bạn thấy trang web Unishop với tất cả các sản phẩm đã được tải.\nXác Minh Trang Web 2.1 2.1 Đăng nhập vào ứng dụng. Bạn cần cung cấp email đã đăng ký từ phần Yêu cầu trước \u0026gt; Khu vực chính (Primary Region).\n2.2 Bạn sẽ thấy các mặt hàng trong giỏ hàng mà bạn đã thêm từ khu vực chính N. Virginia (us-east-1).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/3-pilot-light/6-clean-up/",
+	"title": "Dọn dẹp tài nguyên",
+	"tags": [],
+	"description": "",
+	"content": "\rNếu bạn đang tham gia workshop này qua đào tạo do giảng viên hướng dẫn, bạn KHÔNG cần hoàn thành phần này.\nS3 Cleanup 1.1 Nhấp vào S3 để điều hướng đến bảng điều khiển.\n1.2 Chọn pilot-primary-uibucket-xxxx và nhấp vào Empty.\n1.3 Nhập permanently vào hộp xác nhận và nhấp vào Empty.\n1.4 Khi bạn thấy thông báo màu xanh ở trên cùng thông báo rằng bucket đã được dọn sạch, nhấp vào Exit.\nVui lòng lặp lại các bước 1.1 đến 1.4 cho các bucket sau: pilot-secondary-uibucket-xxxx\nDọn dẹp Cơ Sở Dữ Liệu Bước này là bắt buộc vì bạn đã thực hiện việc thăng cấp thủ công cho Cơ sở dữ liệu Aurora.\n2.1 Nhấp vào RDS để điều hướng đến bảng điều khiển ở khu vực Oregon (us-west-2).\n2.2 Chọn cơ sở dữ liệu unishop trong cluster pilot-secondary và chọn Delet trong Actions.\n2.3 Bỏ chọn Create final snapshot, chọn I acknowledge\u0026hellip;, nhập delete me và nhấp vào nút Delete.\n2.4 Thay đổi khu vực thành N. Virginia sử dụng công cụ chọn khu vực ở góc trên bên phải, sau đó chọn cơ sở dữ liệu unishop trong cluster pilot-primary và chọn Delete trong Actions. 2.5 Bỏ chọn Create final snapshot, chọn I acknowledge..., nhập delete me và nhấp vào nút Delete.\n2.6 Chọn pilot-global và chọn Delete trong Actions rồi xác nhận việc xóa.\nChờ tất cả các cơ sở dữ liệu và cluster hoàn thành việc xóa trước khi tiếp tục bước tiếp theo.\nEC2 Cleanup 3.1 Click EC2 to navigate to the dashboard in the Oregon (us-west-2) region.\n3.2 Select the pilot-secondary instance and click Terminate instance under Instance State.\nCloudFormation Secondary Region Cleanup 4.1 Click CloudFormation to navigate to the dashboard in the Oregon (us-west-2) region.\n4.2 Select the pilot-secondary stack and click Delete.\n4.3 Click Delete stack to confirm the removal.\nCloudFormation Primary Region Cleanup 5.1 Click CloudFormation to navigate to the dashboard in the N. Virginia (us-east-1) region.\n5.2 Select pilot-primary stack. Next click the Delete button to remove it.\n5.3 Click Delete stack to confirm the deletion.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/6-verify-failover/",
+	"title": "Xác minh Chuyển đổi dự phòng",
+	"tags": [],
+	"description": "",
+	"content": "Giỏ hàng của bạn trên Amazon S3, nơi lưu trữ website Hot-Primary, hiện không thể truy cập được. Khi CloudFront cố gắng chuyển hướng yêu cầu của người dùng đến khu vực chính, nó sẽ nhận được lỗi HTTP 403 (Cấm), giống như bạn đã thấy. CloudFront Distribution sẽ tự động xử lý tình huống này bằng cách chuyển đổi sang khu vực Hot-Secondary.\nNếu bạn quay lại và làm mới trình duyệt (sử dụng Tên miền CloudFront Distribution từ trước), bạn sẽ thấy website Unicorn Shop - us-west-2. Phiên làm việc của người dùng vẫn còn hoạt động và giỏ hàng của họ vẫn chứa các sản phẩm đã được thêm trước đó.\n.\nNếu bạn không thấy \u0026ldquo;us-west-2\u0026rdquo;, điều này có thể là do bộ nhớ đệm. Hãy thử làm mới trang bằng cách nhấn CTRL+F5.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/6-verify-secondary-region/",
+	"title": "Xác minh Trang web Khu vực Phụ",
+	"tags": [],
+	"description": "",
+	"content": "Xác minh Trang web Khu vực Thứ hai 1.1 Nhấp vào S3 để điều hướng đến bảng điều khiển.\n1.2 Nhấp vào liên kết backupandrestore-secondary-uibucket-xxxx\n1.3 Nhấp vào liên kết Properties.\n1.4 Trong phần Static website hosting section. nhấp vào liên kết Bucket website endpoint.\n1.5 Bạn đang truy cập khu vực thứ hai Oregon (us-west-2) nếu bạn thấy us-west-2 trong tiêu đề và các sản phẩm unicorn.\nNếu bạn không thấy us-west-2, điều này có thể do bộ nhớ cache. Vui lòng thử làm mới trang một cách mạnh mẽ (sử dụng CTRL+F5).\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/2-backup-and-restore/7-clean-up/",
+	"title": "Dọn dẹp tài nguyên",
+	"tags": [],
+	"description": "",
+	"content": "\rNếu bạn đang tham gia khóa học này thông qua đào tạo do giảng viên dẫn dắt, bạn KHÔNG cần hoàn thành phần này\nAmazon S3 1.1 Nhấp vào S3 để điều hướng đến bảng điều khiển.\n1.2 Chọn bucket có tiền tố backupandrestore-primary-uibucket-xxxx và nhấp vào nút Empty.\n1.3 Nhập \u0026ldquo;permanently delete\u0026rdquo; vào ô xác nhận và sau đó nhấp vào Empty.\n1.4 Chờ cho đến khi bạn thấy biểu ngữ màu xanh lá cây ở phía trên của trang, cho biết bucket đã trống. Sau đó, nhấp vào nút Exit.\nVui lòng lặp lại các bước 1.1 đến 1.4 cho các bucket sau: backupandrestore-secondary-uibucket-xxxx\n1.5 Chọn bucket có tiền tố backupandrestore-secondary-uibucket-xxxx và nhấp vào nút Delete.\n1.6 Xác nhận việc xóa.\nAmazon CloudFormation 2.1 Nhấp vào CloudFormation ể điều hướng đến bảng điều khiển trong khu vực N. Virginia (us-east-1).\n2.2 Chọn stack backupandrestore-primary và nhấp vào nút Delete.\n2.3 Nhấp vào nút Delete stack để xác nhận việc xóa.\nVui lòng lặp lại các bước 2.1 đến 2.3 cho stack backupandrestore-secondary trong khu vực thứ cấp Oregon (us-west-2).\n****\nAWS Backup 3.1 Nhấp vào AWS Backup để điều hướng đến bảng điều khiển trong khu vực N. Virginia (us-east-1).\n3.2 Nhấp vào Backup Vaults và chọn Default.\n3.3 Chọn tất cả các bản sao lưu và chọn Delete dưới phần Actions.\n3.4 Nhập delete rồi nhấp vào nút Delete recovery points.\nVui lòng lặp lại các bước 3.1 đến 3.3 cho AWS Backup trong khu vực Oregon (us-west-2).\nAmazon EC2 4.1 Nhấp vào EC2 để điều hướng đến bảng điều khiển trong khu vực Oregon (us-west-2).\n4.2 Chọn instance đã khôi phục, instance này sẽ KHÔNG có Name và có Security group name là backupandrestore-secondary-EC2SecurityGroup-xxxx, sau đó nhấp vào Instance State, rồi nhấp vào Terminate instance.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/5-hot-standby/7-clean-up/",
+	"title": "Dọn dẹp Tài nguyên",
+	"tags": [],
+	"description": "",
+	"content": "If you are running this workshop via an instructor led training, you do NOT need to complete this section.\nDọn dẹp S3 1.1 Click vào S3 để vào bảng điều khiển.\n1.2 Chọn hot-primary-uibucket-xxxx và nhấn nút Empty.\n1.3 Nhập \u0026ldquo;permanently delete\u0026rdquo; vào ô xác nhận và nhấn Empty.\n1.4 Chờ cho đến khi thấy một thanh banner xanh ở trên trang, cho biết thùng chứa đã được làm trống. Sau đó nhấn nút Exit.\nLặp lại các bước từ 1.1 đến 1.4 cho các thùng chứa sau: hot-secondary-uibucket-xxxx hot-primary-assetbucket-xxxx hot-secondary-assetbucket-xxxx\nDọn dẹp DynamoDB 2.1 Click vào DynamoDB để vào bảng điều khiển ở khu vực N. Virginia (us-east-1).\n2.2 Click vào liên kết Tables.\n2.3 Click vào unishophotstandby.\n2.4 Click vào liên kết Global Tables. Chọn US West (Oregon), sau đó nhấn nút Delete replica.\n2.5 Nhập \u0026ldquo;delete\u0026rdquo; và nhấn nút Delete.\nDọn dẹp CloudFront 3.1 Click vào CloudFront để vào bảng điều khiển.\n3.2 Chọn phân phối CloudFront, sau đó nhấn nút Disable và xác nhận việc tắt.\n3.3 Chờ phân phối CloudFront có trạng thái Disabled, sau đó chọn phân phối CloudFront và nhấn nút Delete và xác nhận việc xóa.\nDọn dẹp Cơ sở Dữ liệu Bước này là bắt buộc vì bạn đã thực hiện thao tác nâng cấp thủ công cho Cơ sở dữ liệu Aurora.\n4.1 Click vào RDS để vào bảng điều khiển ở khu vực Oregon (us-west-2).\n4.2 Chọn cơ sở dữ liệu unishop-hot dưới cụm hot-secondary và chọn Delete trong Actions.\n4.3 Nhập \u0026ldquo;delete me\u0026rdquo; rồi nhấn nút Delete.\n4.4 Chọn hot-secondary và chọn Remove from global database trong Actions.\n4.5 Xác nhận bằng cách nhấn nút Remove and promote.\n4.6 Chọn hot-secondary và chọn Delete trong Actions.\n4.7 Bỏ chọn Create final snapshot, chọn I acknowledge\u0026hellip;, nhập \u0026ldquo;delete me\u0026rdquo; và nhấn nút Delete DB cluster.\n4.8 Thay đổi khu vực thành N. Virginia sử dụng Trình chọn Khu vực ở góc trên bên phải, sau đó chọn cơ sở dữ liệu unishop-hot dưới cụm hot-primary và chọn Delete trong Actions.\n4.9 Nhập \u0026ldquo;delete me\u0026rdquo; rồi nhấn nút Delete.\n4.10 Chọn hot-primary và chọn Delete trong Actions.\n4.11 Bỏ chọn Create final snapshot, chọn I acknowledge\u0026hellip;, nhập \u0026ldquo;delete me\u0026rdquo; và nhấn nút Delete DB cluster.\nKhi tất cả các cơ sở dữ liệu đã bị xóa, bạn có thể tiếp tục bước tiếp theo và xóa cụm toàn cầu.\n4.12 Chọn hot-global và chọn Delete trong Actions, sau đó xác nhận việc xóa.\nDọn dẹp CloudFormation 5.1 Click vào CloudFormation để vào bảng điều khiển ở khu vực Oregon (us-west-2).\n5.2 Chọn hot-secondary, sau đó nhấn nút Delete.\n5.3 Click vào nút Delete stack.\nBạn phải đợi việc Dọn dẹp Cơ sở Dữ liệu hoàn tất trước khi chuyển sang bước tiếp theo.\n5.4 Thay đổi khu vực thành N. Virginia (us-east-1) bằng cách sử dụng Trình chọn Khu vực ở góc trên bên phải.\n5.5 Chọn hot-primary, sau đó nhấn nút Delete.\n5.6 Nhấn nút Delete stack.\n"
+},
+{
+	"uri": "http://Anselm10.github.io/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://Anselm10.github.io/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
